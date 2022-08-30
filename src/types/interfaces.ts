@@ -1,5 +1,5 @@
 import { PopulatedDoc, Document, Types } from "mongoose";
-export interface IUser {
+export interface IUsers {
   _id?: Types.ObjectId|String;
   email: string;
   phoneNumber: string;

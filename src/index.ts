@@ -54,7 +54,7 @@ app.get('/', (req: Request, res: Response) => {
   app.use("/Roles", Roles_routes);
   app.use("/Service_provider", Service_provider_routes);
   app.use("/Session", Session_routes);
-  //  app.use("/User", User_routes);
+  app.use("/Users", User_routes);
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);

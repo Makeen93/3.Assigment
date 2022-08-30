@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
-import { INotiﬁcations } from "../types/interfaces";
-const NotiﬁcationsSchema = new Schema<INotiﬁcations>({
+import { INotifications } from "../types/interfaces";
+const NotiﬁcationsSchema = new Schema<INotifications>({
     referenceType: { type: String, required: true },
     referenceID: { type: String, required: true },
     statues: { type: String, required: true },
@@ -14,4 +14,4 @@ const NotiﬁcationsSchema = new Schema<INotiﬁcations>({
 
 
 //Export model
-module.exports = model<INotiﬁcations>("Notiﬁcations", NotiﬁcationsSchema);
+module.exports = model<INotifications>("Notification", NotiﬁcationsSchema);

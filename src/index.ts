@@ -37,7 +37,7 @@ app.get('/', (req: Request, res: Response) => {
   const Dispute_routes = require("./routes/DisputeRoute");
   const Emloyees_routes = require("./routes/EmloyeesRoute");
   const Enum_values_routes = require("./routes/Enum_valuesRoute");
-  const Notiﬁcations_routes = require("./routes/NotiﬁcationsRoute");
+  const Notiﬁcations_routes = require("./routes/NotificationsRoute");
   const Roles_routes = require("./routes/RolesRoute");
   const Service_provider_routes = require("./routes/Service_providerRoute");
   const Session_routes = require("./routes/SessionRoute");
@@ -50,7 +50,7 @@ app.get('/', (req: Request, res: Response) => {
   app.use("/Dispute", Dispute_routes);
   app.use("/Emloyees", Emloyees_routes);
   app.use("/Enum_values", Enum_values_routes);
-  app.use("/Notiﬁcations", Notiﬁcations_routes);
+  app.use("/Notifications", Notiﬁcations_routes);
   app.use("/Roles", Roles_routes);
   app.use("/Service_provider", Service_provider_routes);
   app.use("/Session", Session_routes);

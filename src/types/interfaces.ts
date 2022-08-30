@@ -95,7 +95,7 @@ export interface IEmloyees {
     messages:Object[];
     deliveryDetails:Object[];
   }
-  export interface INotiﬁcations{
+  export interface INotifications{
     _id?: Types.ObjectId|String;
     referenceType: "session"|"agreements"|"disputes"|"alarm"|"announcements"|"users"|"communications";
     referenceID:string;

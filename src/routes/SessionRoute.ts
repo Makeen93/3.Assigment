@@ -1,21 +1,65 @@
-import { Router } from "express";
-const Session_controller = require("../controllers/Session_controller");
+import express from "express";
+import Session_controller from "../controllers/Session_controller";
 
-const router = Router();
+const router = express.Router();
 
-// POST request for creating Book.
-router.post("/create", Session_controller.sessions_create_post);
+router.get("/", (_req, res) => {
+  const controller = new Session_controller();
+  controller
+    .getSessions()
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      res.status(422).send(err);
+    });
+});
+router.get("/:sessionId", (req, res) => {
+  const controller = new Session_controller();
+  controller
+    .getSession(req.params.sessionId)
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).send("the requested session in not found");
+    });
+});
+router.delete("/:sessionId", (req, res) => {
+  const controller = new Session_controller();
+  controller
+    .deleteSession(req.params.sessionId)
+    .then((_) => {
+      res.send("deleted");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).send("the requested session in not found");
+    });
+});
+router.post("/create", (req, res) => {
+  const controller = new Session_controller();
+  controller
+    .createSession(req.body)
+    .then((_) => {
+      res.send("created");
+    })
+    .catch((err) => {
+      res.status(422).send(err);
+    });
+});
+router.put("/update/:sessionId", (req, res) => {
+  const controller = new Session_controller();
+  controller
+    .updateSession(req.params.sessionId, req.body)
+    .then((response) => {
+      if (response != null) res.send("updated");
+      else res.status(422).send("the requested session in not found");
+    })
+    .catch((err) => {
+      res.status(422).send(err);
+    });
+});
 
-// POST request to delete Book.
-router.post("/:id/delete", Session_controller.sessions_delete_post);
-
-// POST request to update Book.
-router.post("/:id/update", Session_controller.sessions_update_post);
-
-// GET request for one Book.
-router.get("/:id", Session_controller.sessions_detail);
-
-// GET request for list of all Book items.
-router.get("/", Session_controller.sessions_list);
-
-module.exports = router;
+export default router;

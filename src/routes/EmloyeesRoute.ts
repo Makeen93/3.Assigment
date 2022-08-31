@@ -1,21 +1,65 @@
-import { Router } from "express";
-const Emloyees_controller = require("../controllers/Emloyees_controller");
+import express from "express";
+import Emloyees_controller from "../controllers/Emloyees_controller";
 
-const router = Router();
+const router = express.Router();
 
-// POST request for creating Book.
-router.post("/create", Emloyees_controller.emloyees_create_post);
+router.get("/", (_req, res) => {
+  const controller = new Emloyees_controller();
+  controller
+    .getEmloyees()
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      res.status(422).send(err);
+    });
+});
+router.get("/:emloyeId", (req, res) => {
+  const controller = new Emloyees_controller();
+  controller
+    .getEmloye(req.params.emloyeId)
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).send("the requested emloye in not found");
+    });
+});
+router.delete("/:emloyeId", (req, res) => {
+  const controller = new Emloyees_controller();
+  controller
+    .deleteEmloye(req.params.emloyeId)
+    .then((_) => {
+      res.send("deleted");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).send("the requested emloye in not found");
+    });
+});
+router.post("/create", (req, res) => {
+  const controller = new Emloyees_controller();
+  controller
+    .createEmloye(req.body)
+    .then((_) => {
+      res.send("created");
+    })
+    .catch((err) => {
+      res.status(422).send(err);
+    });
+});
+router.put("/update/:emloyeId", (req, res) => {
+  const controller = new Emloyees_controller();
+  controller
+    .updateEmloye(req.params.emloyeId, req.body)
+    .then((response) => {
+      if (response != null) res.send("updated");
+      else res.status(422).send("the requested emloye in not found");
+    })
+    .catch((err) => {
+      res.status(422).send(err);
+    });
+});
 
-// POST request to delete Book.
-router.post("/:id/delete", Emloyees_controller.emloyees_delete_post);
-
-// POST request to update Book.
-router.post("/:id/update", Emloyees_controller.emloyees_update_post);
-
-// GET request for one Book.
-router.get("/:id", Emloyees_controller.emloyees_detail);
-
-// GET request for list of all Book items.
-router.get("/", Emloyees_controller.emloyees_list);
-
-module.exports = router;
+export default router;

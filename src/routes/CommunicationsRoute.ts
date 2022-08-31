@@ -1,21 +1,65 @@
-import { Router } from "express";
-const Communications_controller = require("../controllers/Communications_controller");
+import express from "express";
+import Communications_controller from "../controllers/Communications_controller";
 
-const router = Router();
+const router = express.Router();
 
-// POST request for creating Book.
-router.post("/create", Communications_controller.communications_create_post);
+router.get("/", (_req, res) => {
+  const controller = new Communications_controller();
+  controller
+    .getCommunications()
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      res.status(422).send(err);
+    });
+});
+router.get("/:communicationId", (req, res) => {
+  const controller = new Communications_controller();
+  controller
+    .getCommunication(req.params.communicationId)
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).send("the requested communication in not found");
+    });
+});
+router.delete("/:communicationId", (req, res) => {
+  const controller = new Communications_controller();
+  controller
+    .deleteCommunication(req.params.communicationId)
+    .then((_) => {
+      res.send("deleted");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).send("the requested communication in not found");
+    });
+});
+router.post("/create", (req, res) => {
+  const controller = new Communications_controller();
+  controller
+    .createCommunication(req.body)
+    .then((_) => {
+      res.send("created");
+    })
+    .catch((err) => {
+      res.status(422).send(err);
+    });
+});
+router.put("/update/:communicationId", (req, res) => {
+  const controller = new Communications_controller();
+  controller
+    .updateCommunication(req.params.communicationId, req.body)
+    .then((response) => {
+      if (response != null) res.send("updated");
+      else res.status(422).send("the requested communication in not found");
+    })
+    .catch((err) => {
+      res.status(422).send(err);
+    });
+});
 
-// POST request to delete Book.
-router.post("/:id/delete", Communications_controller.communications_delete_post);
-
-// POST request to update Book.
-router.post("/:id/update", Communications_controller.communications_update_post);
-
-// GET request for one Book.
-router.get("/:id", Communications_controller.communications_detail);
-
-// GET request for list of all Book items.
-router.get("/", Communications_controller.communications_list);
-
-module.exports = router;
+export default router;

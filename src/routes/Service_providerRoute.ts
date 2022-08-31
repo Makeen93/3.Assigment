@@ -1,21 +1,65 @@
-import { Router } from "express";
-const Service_provider_controller = require("../controllers/Service_provider_controller");
+import express from "express";
+import Service_provider_controller from "../controllers/Service_provider_controller";
 
-const router = Router();
+const router = express.Router();
 
-// POST request for creating Book.
-router.post("/create", Service_provider_controller.service_provider_create_post);
+router.get("/", (_req, res) => {
+  const controller = new Service_provider_controller();
+  controller
+    .getService_providers()
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      res.status(422).send(err);
+    });
+});
+router.get("/:service_providerId", (req, res) => {
+  const controller = new Service_provider_controller();
+  controller
+    .getService_provider(req.params.service_providerId)
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).send("the requested service_provider in not found");
+    });
+});
+router.delete("/:service_providerId", (req, res) => {
+  const controller = new Service_provider_controller();
+  controller
+    .deleteService_provider(req.params.service_providerId)
+    .then((_) => {
+      res.send("deleted");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).send("the requested service_provider in not found");
+    });
+});
+router.post("/create", (req, res) => {
+  const controller = new Service_provider_controller();
+  controller
+    .createService_provider(req.body)
+    .then((_) => {
+      res.send("created");
+    })
+    .catch((err) => {
+      res.status(422).send(err);
+    });
+});
+router.put("/update/:service_providerId", (req, res) => {
+  const controller = new Service_provider_controller();
+  controller
+    .updateService_provider(req.params.service_providerId, req.body)
+    .then((response) => {
+      if (response != null) res.send("updated");
+      else res.status(422).send("the requested service_provider in not found");
+    })
+    .catch((err) => {
+      res.status(422).send(err);
+    });
+});
 
-// POST request to delete Book.
-router.post("/:id/delete", Service_provider_controller.service_provider_delete_post);
-
-// POST request to update Book.
-router.post("/:id/update", Service_provider_controller.service_provider_update_post);
-
-// GET request for one Book.
-router.get("/:id", Service_provider_controller.service_provider_detail);
-
-// GET request for list of all Book items.
-router.get("/", Service_provider_controller.service_provider_list);
-
-module.exports = router;
+export default router;

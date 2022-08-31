@@ -1,21 +1,65 @@
-import { Router } from "express";
-const User_controller = require("../controllers/User_controller");
+import express from "express";
+import User_controller from "../controllers/User_controller";
 
-const router = Router();
+const router = express.Router();
 
-// POST request for creating Book.
-router.post("/create",User_controller.users_create_post);
+router.get("/", (_req, res) => {
+  const controller = new User_controller();
+  controller
+    .getUsers()
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      res.status(422).send(err);
+    });
+});
+router.get("/:userId", (req, res) => {
+  const controller = new User_controller();
+  controller
+    .getUser(req.params.userId)
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).send("the requested user in not found");
+    });
+});
+router.delete("/:userId", (req, res) => {
+  const controller = new User_controller();
+  controller
+    .deleteUser(req.params.userId)
+    .then((_) => {
+      res.send("deleted");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).send("the requested user in not found");
+    });
+});
+router.post("/create", (req, res) => {
+  const controller = new User_controller();
+  controller
+    .createUser(req.body)
+    .then((_) => {
+      res.send("created");
+    })
+    .catch((err) => {
+      res.status(422).send(err);
+    });
+});
+router.put("/update/:userId", (req, res) => {
+  const controller = new User_controller();
+  controller
+    .updateUser(req.params.userId, req.body)
+    .then((response) => {
+      if (response != null) res.send("updated");
+      else res.status(422).send("the requested user in not found");
+    })
+    .catch((err) => {
+      res.status(422).send(err);
+    });
+});
 
-// POST request to delete Book.
-router.post("/:id/delete", User_controller.user_delete_post);
-
-// POST request to update Book.
-router.post("/:id/update", User_controller.users_update_post);
-
-// GET request for one Book.
-router.get("/:id", User_controller.users_detail);
-
-// GET request for list of all Book items.
-router.get("/", User_controller.users_list);
-
-module.exports = router;
+export default router;

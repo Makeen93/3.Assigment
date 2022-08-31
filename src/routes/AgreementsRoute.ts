@@ -1,21 +1,65 @@
-import { Router } from "express";
-const Agreements_controller = require("../controllers/Agreements_controller");
+import express from "express";
+import Agreements_controller from "../controllers/Agreements_controller";
 
-const router = Router();
+const router = express.Router();
 
-// POST request for creating Book.
-router.post("/create", Agreements_controller.agreements_create_post);
+router.get("/", (_req, res) => {
+  const controller = new Agreements_controller();
+  controller
+    .getAgreements()
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      res.status(422).send(err);
+    });
+});
+router.get("/:agreementId", (req, res) => {
+  const controller = new Agreements_controller();
+  controller
+    .getAgreement(req.params.agreementId)
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).send("the requested agreement in not found");
+    });
+});
+router.delete("/:agreementId", (req, res) => {
+  const controller = new Agreements_controller();
+  controller
+    .deleteAgreement(req.params.agreementId)
+    .then((_) => {
+      res.send("deleted");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).send("the requested agreement in not found");
+    });
+});
+router.post("/create", (req, res) => {
+  const controller = new Agreements_controller();
+  controller
+    .createAgreement(req.body)
+    .then((_) => {
+      res.send("created");
+    })
+    .catch((err) => {
+      res.status(422).send(err);
+    });
+});
+router.put("/update/:agreementId", (req, res) => {
+  const controller = new Agreements_controller();
+  controller
+    .updateAgreement(req.params.agreementId, req.body)
+    .then((response) => {
+      if (response != null) res.send("updated");
+      else res.status(422).send("the requested agreement in not found");
+    })
+    .catch((err) => {
+      res.status(422).send(err);
+    });
+});
 
-// POST request to delete Book.
-router.post("/:id/delete", Agreements_controller.agreements_delete_post);
-
-// POST request to update Book.
-router.post("/:id/update", Agreements_controller.agreements_update_post);
-
-// GET request for one Book.
-router.get("/:id", Agreements_controller.agreements_detail);
-
-// GET request for list of all Book items.
-router.get("/", Agreements_controller.agreements_list);
-
-module.exports = router;
+export default router;

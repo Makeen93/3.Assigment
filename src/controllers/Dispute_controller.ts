@@ -1,88 +1,105 @@
-import { Request, Response } from "express";
+import {
+  Get,
+  Post,
+  Route,
+  SuccessResponse,
+  Body,
+  Response,
+  Example,
+  Delete,
+  Path,
+  Put,
+} from "tsoa";
+import { IDispute } from "../types/interfaces";
+import { Model } from "mongoose";
 
-const DisputeModel = require("../models/Dispute");
+const DisputeModel: Model<IDispute> = require("../models/Dispute");
 
+@Route("Dispute")
+export default class DisputeController {
+  /**
+   * Get List of All Dispute
+   */
+  @Get("/")
+  public async getDisputes(): Promise<IDispute[]> {
+    return await DisputeModel.find();
+  }
 
-exports.dispute_list = (req: Request, res: Response) => {
-    DisputeModel.find()
-    .then(async (centers: any) => res.json(centers))
-    .catch((err: any) => res.status(400).json(err));
-};
-
-
-exports.dispute_detail = (req: Request, res: Response) => {
-    DisputeModel.findById(req.params._id)
-    .then((Dispute: any) => res.json(Dispute))
-    .catch((err: any) => res.status(400).json(err));
-};
-
-
-exports.dispute_create_post = (req: any, res: Response) => {
-  const sessionID= req.Dispute.sessionID;
-  const ﬁrstPartyUID= req.Dispute.ﬁrstPartyUID;
-  const secondUID= req.Dispute.secondUID;
-  const topic= req.Dispute.topic;
-  const details= req.Dispute.details;
-  const attachments= req.Dispute.attachments;
-  const status= req.Dispute.status;
-  const resolverUID= req.Dispute.resolverUID;
-  const inProgressDate= req.Dispute.inProgressDate;
-  const receivedDate= req.Dispute.receivedDate;
-  const suspendedDate= req.Dispute.suspendedDate;
-  const closedDate= req.Dispute.closedDate;
-  const Dispute = new DisputeModel({
-    sessionID,
-    ﬁrstPartyUID,
-    secondUID,
-    topic,
-    details,
-    attachments,
-    status,
-    resolverUID,
-    inProgressDate,
-    receivedDate,
-    suspendedDate,
-    closedDate,
-  });
-  Dispute
-    .save()
-    .then(async (e: any) => {
-      res.json("Dispute Inserted!");
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
+  /**
+   * Get a dispute details
+   * @example disputeId "6300e18d3bbd975cf6459994"
+   */
+  @Response(404, "the requested dispute in not found")
+  @Get("{disputeId}")
+  public async getDispute(disputeId: string): Promise<IDispute | null> {
+    return await DisputeModel.findById(disputeId);
+  }
 
 
-exports.dispute_delete_post = (req: Request, res: Response) => {
-    DisputeModel.findByIdAndDelete(req.params._id)
-    .then((e: any) => {
-      res.json("Dispute Deleted.");
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
+  /**
+   * Delete a dispute
+   * @example disputeId "6300e18d3bbd975cf6459994"
+   */
+  @Response(404, "the requested dispute in not found")
+  @SuccessResponse("200", "Deleted")
+  @Delete("{disputeId}")
+  public async deleteDispute(disputeId: string) {
+    return await DisputeModel.findByIdAndDelete(disputeId);
+  }
 
+  /**
+   * Create a dispute
+   */
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "Created")
+  @Example<IDispute>({
+    sessionID:"1",
+    ﬁrstPartyUID:"1",
+    secondUID:"1",
+    topic:"",
+    details:"",
+    attachments:[],
+    status:'in-progress',
+    resolverUID:"1",
+    inProgressDate:new Date(2022,9,3),
+    receivedDate:new Date(2022,9,3),
+    suspendedDate:new Date(2022,9,3),
+    closedDate:new Date(2022,9,3),
+  })
+  @Post("create")
+  public async createDispute(@Body() dispute: IDispute): Promise<IDispute> {
+    return new DisputeModel({
+      ...dispute,
+    }).save();
+  }
 
-exports.dispute_update_post = (req: Request, res: Response) => {
-    DisputeModel.findById(req.params._id)
-    .then((Dispute: any) => {
-        Dispute.sessionID  = req.body.sessionID;
-        Dispute.ﬁrstPartyUID  = req.body.ﬁrstPartyUID;
-        Dispute.secondUID  = req.body.secondUID;
-        Dispute.topic  = req.body.topic;
-        Dispute.details  = req.body.details;
-        Dispute.attachments  = req.body.attachments;
-        Dispute.status  = req.body.status;
-        Dispute.resolverUID  = req.body.resolverUID;
-        Dispute.inProgressDate  = req.body.inProgressDate;
-        Dispute.receivedDate  = req.body.receivedDate;
-        Dispute.suspendedDate  = req.body.suspendedDate;
-        Dispute.closedDate  = req.body.closedDate;
-        Dispute
-        .save()
-        .then((e: any) => {
-          res.json("Dispute Updated!");
-        })
-        .catch((err: any) => res.status(400).json(err));
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
+  /**
+   * Update a dispute
+   */
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "updated")
+  @Put("update/{disputeId}")
+  public async updateDispute(
+    @Path() disputeId: string,
+    @Body() dispute: Partial<IDispute>
+  ): Promise<IDispute | null> {
+    let disputeDocument = await DisputeModel.findById(disputeId);
+    if (disputeDocument != null) {
+      disputeDocument.sessionID = dispute.sessionID ?? disputeDocument.sessionID;
+      disputeDocument.ﬁrstPartyUID = dispute.ﬁrstPartyUID ?? disputeDocument.ﬁrstPartyUID;
+      disputeDocument.secondUID = dispute.secondUID ?? disputeDocument.secondUID;
+      disputeDocument.topic = dispute.topic ?? disputeDocument.topic;
+      disputeDocument.details = dispute.details ?? disputeDocument.details;
+      disputeDocument.attachments = dispute.attachments ?? disputeDocument.attachments;
+      disputeDocument.status = dispute.status ?? disputeDocument.status;
+      disputeDocument.resolverUID = dispute.resolverUID ?? disputeDocument.resolverUID;
+      disputeDocument.inProgressDate = dispute.inProgressDate ?? disputeDocument.inProgressDate;
+      disputeDocument.receivedDate = dispute.receivedDate ?? disputeDocument.receivedDate;
+      disputeDocument.suspendedDate = dispute.suspendedDate ?? disputeDocument.suspendedDate;
+      disputeDocument.closedDate = dispute.closedDate ?? disputeDocument.closedDate;
+      return await disputeDocument.save();
+    }
+    return null;
+  }
+}
+

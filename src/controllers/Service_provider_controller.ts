@@ -1,85 +1,102 @@
-import { Request, Response } from "express";
+import {
+  Get,
+  Post,
+  Route,
+  SuccessResponse,
+  Body,
+  Response,
+  Example,
+  Delete,
+  Path,
+  Put,
+} from "tsoa";
+import { IService_provider } from "../types/interfaces";
+import { Model } from "mongoose";
 
-const Service_providerModel = require("../models/Service_provider");
+const Service_providerModel: Model<IService_provider> = require("../models/Service_provider");
 
+@Route("service_provider")
+export default class Service_providerController {
+  /**
+   * Get List of All Service_provider
+   */
+  @Get("/")
+  public async getService_providers(): Promise<IService_provider[]> {
+    return await Service_providerModel.find();
+  }
 
-exports.service_provider_list = (req: Request, res: Response) => {
-    Service_providerModel.find()
-    .then(async (centers: any) => res.json(centers))
-    .catch((err: any) => res.status(400).json(err));
-};
-
-
-exports.service_provider_detail = (req: Request, res: Response) => {
-    Service_providerModel.findById(req.params._id)
-    .then((Service_provider: any) => res.json(Service_provider))
-    .catch((err: any) => res.status(400).json(err));
-};
-
-
-exports.service_provider_create_post = (req: any, res: Response) => {
-  const uId= req.Service_provider.uId;
-  const bio= req.Service_provider.bio;
-  const specialities= req.Service_provider.specialities;
-  const preferredServiceType= req.Service_provider.preferredServiceType;
-  const minSessionFee= req.Service_provider.minSessionFee;
-  const maxSessionFee= req.Service_provider.maxSessionFee;
-  const documents= req.Service_provider.documents;
-  const reviewerUIDs= req.Service_provider.reviewerUIDs;
-  const veriﬁcationStatus= req.Service_provider.veriﬁcationStatus;
-  const veriﬁcationDate= req.Service_provider.veriﬁcationDate;
-  const veriﬁedByUID= req.Service_provider.veriﬁedByUID;
-  const Service_provider = new Service_providerModel({
-    uId,
-    bio,
-    specialities,
-    preferredServiceType,
-    minSessionFee,
-    maxSessionFee,
-    documents,
-    reviewerUIDs,
-    veriﬁcationStatus,
-    veriﬁcationDate,
-    veriﬁedByUID,
-  });
-  Service_provider
-    .save()
-    .then(async (e: any) => {
-      res.json("Service_provider Inserted!");
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
+  /**
+   * Get a service_provider details
+   * @example service_providerId "6300e18d3bbd975cf6459994"
+   */
+  @Response(404, "the requested service_provider in not found")
+  @Get("{service_providerId}")
+  public async getService_provider(service_providerId: string): Promise<IService_provider | null> {
+    return await Service_providerModel.findById(service_providerId);
+  }
 
 
-exports.service_provider_delete_post = (req: Request, res: Response) => {
-    Service_providerModel.findByIdAndDelete(req.params._id)
-    .then((e: any) => {
-      res.json("Service_provider Deleted.");
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
+  /**
+   * Delete a service_provider
+   * @example service_providerId "6300e18d3bbd975cf6459994"
+   */
+  @Response(404, "the requested service_provider in not found")
+  @SuccessResponse("200", "Deleted")
+  @Delete("{service_providerId}")
+  public async deleteService_provider(service_providerId: string) {
+    return await Service_providerModel.findByIdAndDelete(service_providerId);
+  }
 
+  /**
+   * Create a service_provider
+   */
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "Created")
+  @Example<IService_provider>({
+    uId:"1",
+    bio:"",
+    specialities:"",
+    preferredServiceType:"home",
+    minSessionFee:10,
+    maxSessionFee:20,
+    documents:"",
+    reviewerUIDs:[],
+    veriﬁcationStatus:"inReview",
+    veriﬁcationDate:new Date(2022,9,3),
+    veriﬁedByUID:"",
+  })
+  @Post("create")
+  public async createService_provider(@Body() service_provider: IService_provider): Promise<IService_provider> {
+    return new Service_providerModel({
+      ...service_provider,
+    }).save();
+  }
 
-exports.service_provider_update_post = (req: Request, res: Response) => {
-    Service_providerModel.findById(req.params._id)
-    .then((Service_provider: any) => {
-        Service_provider.uId  = req.body.uId;
-        Service_provider.bio  = req.body.bio;
-        Service_provider.specialities  = req.body.specialities;
-        Service_provider.preferredServiceType  = req.body.preferredServiceType;
-        Service_provider.minSessionFee  = req.body.minSessionFee;
-        Service_provider.maxSessionFee  = req.body.maxSessionFee;
-        Service_provider.documents  = req.body.documents;
-        Service_provider.reviewerUIDs  = req.body.reviewerUIDs;
-        Service_provider.veriﬁcationStatus  = req.body.veriﬁcationStatus;
-        Service_provider.veriﬁcationDate  = req.body.veriﬁcationDate;
-        Service_provider.veriﬁedByUID  = req.body.veriﬁedByUID;
-        Service_provider
-        .save()
-        .then((e: any) => {
-          res.json("Service_provider Updated!");
-        })
-        .catch((err: any) => res.status(400).json(err));
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
+  /**
+   * Update a service_provider
+   */
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "updated")
+  @Put("update/{service_providerId}")
+  public async updateService_provider(
+    @Path() service_providerId: string,
+    @Body() service_provider: Partial<IService_provider>
+  ): Promise<IService_provider | null> {
+    let service_providerDocument = await Service_providerModel.findById(service_providerId);
+    if (service_providerDocument != null) {
+      service_providerDocument.uId = service_provider.uId ?? service_providerDocument.uId;
+      service_providerDocument.bio = service_provider.bio ?? service_providerDocument.bio;
+      service_providerDocument.specialities = service_provider.specialities ?? service_providerDocument.specialities;
+      service_providerDocument.preferredServiceType = service_provider.preferredServiceType ?? service_providerDocument.preferredServiceType;
+      service_providerDocument.minSessionFee = service_provider.minSessionFee ?? service_providerDocument.minSessionFee
+      service_providerDocument.maxSessionFee = service_provider.maxSessionFee ?? service_providerDocument.maxSessionFee;
+      service_providerDocument.documents = service_provider.documents ?? service_providerDocument.documents;
+      service_providerDocument.reviewerUIDs = service_provider.reviewerUIDs ?? service_providerDocument.reviewerUIDs;
+      service_providerDocument.veriﬁcationStatus = service_provider.veriﬁcationStatus ?? service_providerDocument.veriﬁcationStatus;
+      service_providerDocument.veriﬁcationDate = service_provider.veriﬁcationDate ?? service_providerDocument.veriﬁcationDate;
+      service_providerDocument.veriﬁedByUID = service_provider.veriﬁedByUID ?? service_providerDocument.veriﬁedByUID;
+      return await service_providerDocument.save();
+    }
+    return null;
+  }
+}

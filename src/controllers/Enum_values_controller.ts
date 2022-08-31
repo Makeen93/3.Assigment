@@ -1,61 +1,89 @@
-import { Request, Response } from "express";
 
-const Enum_valuesModel = require("../models/Enum_values");
+import {
+  Get,
+  Post,
+  Route,
+  SuccessResponse,
+  Body,
+  Response,
+  Example,
+  Delete,
+  Path,
+  Put,
+} from "tsoa";
+import { IEnum_values } from "../types/interfaces";
+import { Model } from "mongoose";
 
+const Enum_valuesModel: Model<IEnum_values> = require("../models/Enum_values");
 
-exports.enum_values_list = (req: Request, res: Response) => {
-    Enum_valuesModel.find()
-    .then(async (centers: any) => res.json(centers))
-    .catch((err: any) => res.status(400).json(err));
-};
+@Route("Enum_values")
+export default class Enum_valuesController {
+  /**
+   * Get List of All Enum_values
+   */
+  @Get("/")
+  public async getEnum_values(): Promise<IEnum_values[]> {
+    return await Enum_valuesModel.find();
+  }
 
-
-exports.enum_values_detail = (req: Request, res: Response) => {
-    Enum_valuesModel.findById(req.params._id)
-    .then((Enum_values: any) => res.json(Enum_values))
-    .catch((err: any) => res.status(400).json(err));
-};
-
-
-exports.enum_values_create_post = (req: any, res: Response) => {
-  const name= req.Enum_values.name;
-  const value= req.Enum_values.value;
-  const note= req.Enum_values.note;
-  const Enum_values = new Enum_valuesModel({
-    name,
-    value,
-    note,
-  });
-  Enum_values
-    .save()
-    .then(async (e: any) => {
-      res.json("Enum_value Inserted!");
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
-
-
-exports.enum_values_delete_post = (req: Request, res: Response) => {
-    Enum_valuesModel.findByIdAndDelete(req.params._id)
-    .then((e: any) => {
-      res.json("Enum_value Deleted.");
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
+  /**
+   * Get a enum_value details
+   * @example enum_valueId "6300e18d3bbd975cf6459994"
+   */
+  @Response(404, "the requested enum_value in not found")
+  @Get("{enum_valueId}")
+  public async getEnum_value(enum_valueId: string): Promise<IEnum_values | null> {
+    return await Enum_valuesModel.findById(enum_valueId);
+  }
 
 
-exports.enum_values_update_post = (req: Request, res: Response) => {
-    Enum_valuesModel.findById(req.params._id)
-    .then((Enum_values: any) => {
-        Enum_values.name  = req.body.name;
-        Enum_values.value  = req.body.value;
-        Enum_values.note  = req.body.note;
-        Enum_values
-        .save()
-        .then((e: any) => {
-          res.json("Enum_value Updated!");
-        })
-        .catch((err: any) => res.status(400).json(err));
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
+  /**
+   * Delete a enum_value
+   * @example enum_valueId "6300e18d3bbd975cf6459994"
+   */
+  @Response(404, "the requested enum_value in not found")
+  @SuccessResponse("200", "Deleted")
+  @Delete("{enum_valueId}")
+  public async deleteEnum_value(enum_valueId: string) {
+    return await Enum_valuesModel.findByIdAndDelete(enum_valueId);
+  }
+
+  /**
+   * Create a enum_value
+   */
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "Created")
+  @Example<IEnum_values>({
+    name:"",
+    value:["",""],
+    note:"",
+  })
+  @Post("create")
+  public async createEnum_value(@Body() enum_value: IEnum_values): Promise<IEnum_values> {
+    return new Enum_valuesModel({
+      ...enum_value,
+    }).save();
+  }
+
+  /**
+   * Update a enum_value
+   */
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "updated")
+  @Put("update/{enum_valueId}")
+  public async updateEnum_value(
+    @Path() enum_valueId: string,
+    @Body() enum_value: Partial<IEnum_values>
+  ): Promise<IEnum_values | null> {
+    let enum_valueDocument = await Enum_valuesModel.findById(enum_valueId);
+    if (enum_valueDocument != null) {
+      enum_valueDocument.name = enum_value.name ?? enum_valueDocument.name;
+      enum_valueDocument.value = enum_value.value ?? enum_valueDocument.value;
+      enum_valueDocument.note = enum_value.note ?? enum_valueDocument.note;
+      return await enum_valueDocument.save();
+    }
+    return null;
+  }
+}
+
+

@@ -1,70 +1,94 @@
-import { Request, Response } from "express";
+import {
+  Get,
+  Post,
+  Route,
+  SuccessResponse,
+  Body,
+  Response,
+  Example,
+  Delete,
+  Path,
+  Put,
+} from "tsoa";
+import { ICommunications } from "../types/interfaces";
+import { Model } from "mongoose";
 
-const CommunicationsModel = require("../models/Communications");
+const CommunicationsModel: Model<ICommunications> = require("../models/Communications");
 
+@Route("Communications")
+export default class CommunicationsController {
+  /**
+   * Get List of All Communications
+   */
+  @Get("/")
+  public async getCommunications(): Promise<ICommunications[]> {
+    return await CommunicationsModel.find();
+  }
 
-exports.communications_list = (req: Request, res: Response) => {
-    CommunicationsModel.find()
-    .then(async (centers: any) => res.json(centers))
-    .catch((err: any) => res.status(400).json(err));
-};
-
-
-exports.communications_detail = (req: Request, res: Response) => {
-    CommunicationsModel.findById(req.params._id)
-    .then((Communications: any) => res.json(Communications))
-    .catch((err: any) => res.status(400).json(err));
-};
-
-
-exports.communications_create_post = (req: any, res: Response) => {
-  const referenceType= req.Communications.uID;
-  const referenceID= req.Communications.preferredServiceType;
-  const partiesUIDs= req.Communications.diseases;
-  const lastUpdate= req.Communications.preferences;
-  const messages= req.Communications.preferences;
-  const deliveryDetails= req.Communications.preferences;
-  const Communications = new CommunicationsModel({
-    referenceType,
-    referenceID,
-    partiesUIDs,
-    lastUpdate,
-    messages,
-    deliveryDetails,
-  });
-  Communications
-    .save()
-    .then(async (e: any) => {
-      res.json("Communication Inserted!");
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
+  /**
+   * Get a communication details
+   * @example communicationId "6300e18d3bbd975cf6459994"
+   */
+  @Response(404, "the requested communication in not found")
+  @Get("{communicationId}")
+  public async getCommunication(communicationId: string): Promise<ICommunications | null> {
+    return await CommunicationsModel.findById(communicationId);
+  }
 
 
-exports.communications_delete_post = (req: Request, res: Response) => {
-    CommunicationsModel.findByIdAndDelete(req.params._id)
-    .then((e: any) => {
-      res.json("Communication Deleted.");
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
+  /**
+   * Delete a communication
+   * @example communicationId "6300e18d3bbd975cf6459994"
+   */
+  @Response(404, "the requested communication in not found")
+  @SuccessResponse("200", "Deleted")
+  @Delete("{communicationId}")
+  public async deleteCommunication(communicationId: string) {
+    return await CommunicationsModel.findByIdAndDelete(communicationId);
+  }
 
+  /**
+   * Create a communication
+   */
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "Created")
+  @Example<ICommunications>({
+    referenceType:'agreements',
+    referenceID:"1",
+    partiesUIDs:["",""],
+    lastUpdate:new Date(2022,9,3),
+    messages:["hello","how are you"],
+    deliveryDetails:["",""],
+    
+  })
+  @Post("create")
+  public async createCommunication(@Body() communication: ICommunications): Promise<ICommunications> {
+    return new CommunicationsModel({
+      ...communication,
+    }).save();
+  }
 
-exports.communications_update_post = (req: Request, res: Response) => {
-    CommunicationsModel.findById(req.params._id)
-    .then((Communications: any) => {
-        Communications.referenceType  = req.body.referenceType;
-        Communications.referenceID  = req.body.referenceID;
-        Communications.partiesUIDs  = req.body.partiesUIDs;
-        Communications.lastUpdate  = req.body.lastUpdate;
-        Communications.messages  = req.body.messages;
-        Communications.deliveryDetails  = req.body.deliveryDetails;
-        Communications
-        .save()
-        .then((e: any) => {
-          res.json("Communication Updated!");
-        })
-        .catch((err: any) => res.status(400).json(err));
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
+  /**
+   * Update a communication
+   */
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "updated")
+  @Put("update/{communicationId}")
+  public async updateCommunication(
+    @Path() communicationId: string,
+    @Body() communication: Partial<ICommunications>
+  ): Promise<ICommunications | null> {
+    let communicationDocument = await CommunicationsModel.findById(communicationId);
+    if (communicationDocument != null) {
+      communicationDocument.referenceType = communication.referenceType ?? communicationDocument.referenceType;
+      communicationDocument.referenceID = communication.referenceID ?? communicationDocument.referenceID;
+      communicationDocument.partiesUIDs = communication.partiesUIDs ?? communicationDocument.partiesUIDs;
+      communicationDocument.lastUpdate = communication.lastUpdate ?? communicationDocument.lastUpdate;
+      communicationDocument.messages = communication.messages ?? communicationDocument.messages;
+      communicationDocument.deliveryDetails = communication.deliveryDetails ?? communicationDocument.deliveryDetails;
+      return await communicationDocument.save();
+    }
+    return null;
+  }
+}
+

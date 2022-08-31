@@ -1,76 +1,98 @@
-import { Request, Response } from "express";
+import {
+  Get,
+  Post,
+  Route,
+  SuccessResponse,
+  Body,
+  Response,
+  Example,
+  Delete,
+  Path,
+  Put,
+} from "tsoa";
+import { IAnnouncements } from "../types/interfaces";
+import { Model } from "mongoose";
 
-const AnnouncementsModel = require("../models/Announcements");
+const AnnouncementsModel: Model<IAnnouncements> = require("../models/Announcements");
 
+@Route("announcement")
+export default class AnnouncementsController {
+  /**
+   * Get List of All Announcements
+   */
+  @Get("/")
+  public async getAnnouncements(): Promise<IAnnouncements[]> {
+    return await AnnouncementsModel.find();
+  }
 
-exports.announcements_list = (req: Request, res: Response) => {
-    AnnouncementsModel.find()
-    .then(async (centers: any) => res.json(centers))
-    .catch((err: any) => res.status(400).json(err));
-};
-
-
-exports.announcement_detail = (req: Request, res: Response) => {
-    AnnouncementsModel.findById(req.params._id)
-    .then((Announcements: any) => res.json(Announcements))
-    .catch((err: any) => res.status(400).json(err));
-};
-
-
-exports.announcement_create_post = (req: any, res: Response) => {
-  const referenceType= req.Announcements.referenceType;
-  const referenceID= req.Announcements.referenceID;
-  const statues= req.Announcements.statues;
-  const topic= req.Announcements.topic;
-  const details= req.Announcements.details;
-  const sentDate= req.Announcements.sentDate;
-  const attachments = req.Announcements.attachments;
-  const receiversUIDs = req.Announcements.receiversUIDs;
-  const announcements = new AnnouncementsModel({
-    referenceType,
-    referenceID,
-    statues,
-    topic,
-    details,
-    sentDate,
-    attachments,
-    receiversUIDs,
-  });
-  announcements
-    .save()
-    .then(async (e: any) => {
-      res.json("Announcement Inserted!");
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
+  /**
+   * Get a Announcement details
+   * @example announcementId "6300e18d3bbd975cf6459994"
+   */
+  @Response(404, "the requested announcement in not found")
+  @Get("{announcementId}")
+  public async getAnnouncement(announcementId: string): Promise<IAnnouncements | null> {
+    return await AnnouncementsModel.findById(announcementId);
+  }
 
 
-exports.announcement_delete_post = (req: Request, res: Response) => {
-    AnnouncementsModel.findByIdAndDelete(req.params._id)
-    .then((e: any) => {
-      res.json("Announcement Deleted.");
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
+  /**
+   * Delete a announcement
+   * @example announcementId "6300e18d3bbd975cf6459994"
+   */
+  @Response(404, "the requested announcement in not found")
+  @SuccessResponse("200", "Deleted")
+  @Delete("{announcementId}")
+  public async deleteAnnouncement(announcementId: string) {
+    return await AnnouncementsModel.findByIdAndDelete(announcementId);
+  }
+
+  /**
+   * Create a announcement
+   */
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "Created")
+  @Example<IAnnouncements>({
+    referenceType: 'session',
+    referenceID:"10",
+    statues:'draft',
+    topic:"therapeutic massage",
+    details:"Use the best equipment",
+    sentDate:new Date(2022,9,3),
+    attachments:["",""],
+    receiversUIDs:"",
 
 
-exports.announcement_update_post = (req: Request, res: Response) => {
-    AnnouncementsModel.findById(req.params._id)
-    .then((Announcement: any) => {
-        Announcement.referenceType = req.body.referenceType;
-        Announcement.referenceID = req.body.referenceID;
-        Announcement.statues = req.body.statues;
-        Announcement.topic = req.body.topic;
-        Announcement.details = req.body.details;
-        Announcement.sentDate = req.body.sentDate;
-        Announcement.attachments = req.body.attachments;
-        Announcement.receiversUIDs = req.body.receiversUIDs;
-        Announcement
-        .save()
-        .then((e: any) => {
-          res.json("Announcement Updated!");
-        })
-        .catch((err: any) => res.status(400).json(err));
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
+  })
+  @Post("create")
+  public async createAnnouncement(@Body() announcement: IAnnouncements): Promise<IAnnouncements> {
+    return new AnnouncementsModel({
+      ...announcement,
+    }).save();
+  }
+
+  /**
+   * Update a announcement
+   */
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "updated")
+  @Put("update/{announcementId}")
+  public async updateAnnouncement(
+    @Path() announcementId: string,
+    @Body() announcement: Partial<IAnnouncements>
+  ): Promise<IAnnouncements | null> {
+    let announcementDocument = await AnnouncementsModel.findById(announcementId);
+    if (announcementDocument != null) {
+      announcementDocument.referenceType = announcement.referenceType ?? announcementDocument.referenceType;
+      announcementDocument.referenceID = announcement.referenceID ?? announcementDocument.referenceID;
+      announcementDocument.statues = announcement.statues ?? announcementDocument.statues;
+      announcementDocument.topic = announcement.topic ?? announcementDocument.topic;
+      announcementDocument.details = announcement.details ?? announcementDocument.details;
+      announcementDocument.sentDate = announcement.sentDate ?? announcementDocument.sentDate;
+      announcementDocument.attachments = announcement.attachments ?? announcementDocument.attachments;
+      announcementDocument.receiversUIDs = announcement.receiversUIDs ?? announcementDocument.receiversUIDs;
+      return await announcementDocument.save();
+    }
+    return null;
+  }
+}

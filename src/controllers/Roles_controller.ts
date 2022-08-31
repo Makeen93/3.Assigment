@@ -1,79 +1,98 @@
-import { Request, Response } from "express";
+import {
+  Get,
+  Post,
+  Route,
+  SuccessResponse,
+  Body,
+  Response,
+  Example,
+  Delete,
+  Path,
+  Put,
+} from "tsoa";
+import { IRoles } from "../types/interfaces";
+import { Model } from "mongoose";
 
-const RolesModel = require("../models/Roles");
+const RolesModel: Model<IRoles> = require("../models/Roles");
 
+@Route("roles")
+export default class RolesController {
+  /**
+   * Get List of All Roles
+   */
+  @Get("/")
+  public async getRoles(): Promise<IRoles[]> {
+    return await RolesModel.find();
+  }
 
-exports.roles_list = (req: Request, res: Response) => {
-    RolesModel.find()
-    .then(async (centers: any) => res.json(centers))
-    .catch((err: any) => res.status(400).json(err));
-};
-
-
-exports.roles_detail = (req: Request, res: Response) => {
-    RolesModel.findById(req.params._id)
-    .then((Roles: any) => res.json(Roles))
-    .catch((err: any) => res.status(400).json(err));
-};
-
-
-exports.roles_create_post = (req: any, res: Response) => {
-  const name= req.Roles.name;
-  const employees= req.Roles.employees;
-  const users= req.Roles.users;
-  const service_providers= req.Roles.service_providers;
-  const clients= req.Roles.clients;
-  const sessions= req.Roles.sessions;
-  const communication= req.Roles.communication;
-  const disputes= req.Roles.disputes;
-  const enum_values= req.Roles.enum_values;
-  const Roles = new RolesModel({
-    name,
-    employees,
-    users,
-    service_providers,
-    clients,
-    sessions,
-    communication,
-    disputes,
-    enum_values,
-  });
-  Roles
-    .save()
-    .then(async (e: any) => {
-      res.json("Role Inserted!");
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
+  /**
+   * Get a role details
+   * @example roleId "6300e18d3bbd975cf6459994"
+   */
+  @Response(404, "the requested role in not found")
+  @Get("{roleId}")
+  public async getRole(roleId: string): Promise<IRoles | null> {
+    return await RolesModel.findById(roleId);
+  }
 
 
-exports.roles_delete_post = (req: Request, res: Response) => {
-    RolesModel.findByIdAndDelete(req.params._id)
-    .then((e: any) => {
-      res.json("Role Deleted.");
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
+  /**
+   * Delete a role
+   * @example roleId "6300e18d3bbd975cf6459994"
+   */
+  @Response(404, "the requested role in not found")
+  @SuccessResponse("200", "Deleted")
+  @Delete("{roleId}")
+  public async deleteRole(roleId: string) {
+    return await RolesModel.findByIdAndDelete(roleId);
+  }
 
+  /**
+   * Create a role
+   */
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "Created")
+  @Example<IRoles>({
+    name:"",
+    employees:[],
+    users:[],
+    service_providers:[],
+    clients:[],
+    sessions:[],
+    communication:[],
+    disputes:[],
+    enum_values:[],
+  })
+  @Post("create")
+  public async createRole(@Body() role: IRoles): Promise<IRoles> {
+    return new RolesModel({
+      ...role,
+    }).save();
+  }
 
-exports.roles_update_post = (req: Request, res: Response) => {
-    RolesModel.findById(req.params._id)
-    .then((Roles: any) => {
-        Roles.name  = req.body.name;
-        Roles.employees  = req.body.employees;
-        Roles.users  = req.body.users;
-        Roles.service_providers  = req.body.service_providers;
-        Roles.clients  = req.body.clients;
-        Roles.sessions  = req.body.sessions;
-        Roles.communication  = req.body.communication;
-        Roles.disputes  = req.body.disputes;
-        Roles.enum_values  = req.body.enum_values;
-        Roles
-        .save()
-        .then((e: any) => {
-          res.json("Role Updated!");
-        })
-        .catch((err: any) => res.status(400).json(err));
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
+  /**
+   * Update a role
+   */
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "updated")
+  @Put("update/{roleId}")
+  public async updateRole(
+    @Path() roleId: string,
+    @Body() role: Partial<IRoles>
+  ): Promise<IRoles | null> {
+    let roleDocument = await RolesModel.findById(roleId);
+    if (roleDocument != null) {
+      roleDocument.name = role.name ?? roleDocument.name;
+      roleDocument.employees = role.employees ?? roleDocument.employees;
+      roleDocument.users = role.users ?? roleDocument.users;
+      roleDocument.service_providers = role.service_providers ?? roleDocument.service_providers;
+      roleDocument.clients = role.clients ?? roleDocument.clients;
+      roleDocument.communication = role.communication ?? roleDocument.communication;
+      roleDocument.sessions = role.sessions ?? roleDocument.sessions;
+      roleDocument.disputes = role.disputes ?? roleDocument.disputes;
+      roleDocument.enum_values = role.enum_values ?? roleDocument.enum_values;
+      return await roleDocument.save();
+    }
+    return null;
+  }
+}

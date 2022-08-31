@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
 
+
 dotenv.config();
 
 const app: Express = express();
@@ -19,6 +20,7 @@ throw Error(err);}
 const connection = mongoose.connection;
 connection.once("open", async () => {
   console.log("MongoDB database connection established successfully");
+
 });
 app.use(
     bodyParser.urlencoded({
@@ -26,8 +28,10 @@ app.use(
     })
   );
 app.use(bodyParser.json());
+
 app.use(morgan("tiny"));
 app.use(express.static("public"));
+
 app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });

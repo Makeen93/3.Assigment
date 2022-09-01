@@ -61,13 +61,13 @@ export default class UserController {
     lastNAme:"",
     gender:"F",
     DOB:new Date(2022,9,3),
-    address:[],
+    address:[""],
     verified:"notSend",
     status:"active",
     accountType:"PA",
     lastLoginDate:new Date(2022,9,3),
     accountSettings:"",
-    languages:[],
+    languages:[""],
     maritalStatus:"married",
   })
   @Post("create")

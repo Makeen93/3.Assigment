@@ -4,6 +4,19 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
+import Agreements_routes from "./routes/AgreementsRoute";
+import Alarm_routes from "./routes/AlarmRoute";
+import Announcements_routes from "./routes/AnnouncementsRoute";
+import Clients_routes from "./routes/ClientsRoute";
+import Communications_routes from "./routes/CommunicationsRoute";
+import Dispute_routes from "./routes/DisputeRoute";
+import Emloyees_routes from "./routes/EmloyeesRoute";
+import Enum_values_routes from "./routes/Enum_valuesRoute";
+import Notiﬁcations_routes from "./routes/NotificationsRoute";
+import Roles_routes from "./routes/RolesRoute";
+import Service_provider_routes from "./routes/Service_providerRoute";
+import Session_routes from "./routes/SessionRoute";
+import User_routes from "./routes/UserRoute";
 
 
 dotenv.config();
@@ -21,12 +34,9 @@ const connection = mongoose.connection;
 connection.once("open", async () => {
   console.log("MongoDB database connection established successfully");
 
+
 });
-app.use(
-    bodyParser.urlencoded({
-      extended: false,
-    })
-  );
+app.use(bodyParser.urlencoded({extended: false,}));
 app.use(bodyParser.json());
 
 app.use(morgan("tiny"));
@@ -35,19 +45,19 @@ app.use(express.static("public"));
 app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
-  const Agreements_routes = require("./routes/AgreementsRoute");
-  const Alarm_routes = require("./routes/AlarmRoute");
-  const Announcements_routes = require("./routes/AnnouncementsRoute");
-  const Clients_routes = require("./routes/ClientsRoute");
-  const Communications_routes = require("./routes/CommunicationsRoute");
-  const Dispute_routes = require("./routes/DisputeRoute");
-  const Emloyees_routes = require("./routes/EmloyeesRoute");
-  const Enum_values_routes = require("./routes/Enum_valuesRoute");
-  const Notiﬁcations_routes = require("./routes/NotificationsRoute");
-  const Roles_routes = require("./routes/RolesRoute");
-  const Service_provider_routes = require("./routes/Service_providerRoute");
-  const Session_routes = require("./routes/SessionRoute");
-  const User_routes = require("./routes/UserRoute");
+//const Agreements_routes = require("./routes/AgreementsRoute");
+// const Alarm_routes = require("./routes/AlarmRoute");
+// const Announcements_routes = require("./routes/AnnouncementsRoute");
+// const Clients_routes = require("./routes/ClientsRoute");
+// const Communications_routes = require("./routes/CommunicationsRoute");
+// const Dispute_routes = require("./routes/DisputeRoute");
+// const Emloyees_routes = require("./routes/EmloyeesRoute");
+// const Enum_values_routes = require("./routes/Enum_valuesRoute");
+// const Notiﬁcations_routes = require("./routes/NotificationsRoute");
+// const Roles_routes = require("./routes/RolesRoute");
+// const Service_provider_routes = require("./routes/Service_providerRoute");
+// const Session_routes = require("./routes/SessionRoute");
+// const User_routes = require("./routes/UserRoute");
   app.use("/Agreements", Agreements_routes);
   app.use("/Alarm", Alarm_routes);
   app.use("/Announcements", Announcements_routes);

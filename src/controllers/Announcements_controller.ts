@@ -59,7 +59,7 @@ export default class AnnouncementsController {
     topic:"therapeutic massage",
     details:"Use the best equipment",
     sentDate:new Date(2022,9,3),
-    attachments:["",""],
+    attachments:[""],
     receiversUIDs:"",
 
 

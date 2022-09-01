@@ -57,7 +57,7 @@ export default class AlarmController {
     referenceType: 'agreements',
     referenceID: "10",
     frequencyUnit: 'day',
-    frequency: BigInt(25),
+    frequency: 25,
     active: true,
     startDate: new Date(2022,9,3),
     endDate: new Date(2022,9,3),

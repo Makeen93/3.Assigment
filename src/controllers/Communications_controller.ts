@@ -57,8 +57,8 @@ export default class CommunicationsController {
     referenceID:"1",
     partiesUIDs:["",""],
     lastUpdate:new Date(2022,9,3),
-    messages:["hello","how are you"],
-    deliveryDetails:["",""],
+    messages:[""],
+    deliveryDetails:[""],
     
   })
   @Post("create")

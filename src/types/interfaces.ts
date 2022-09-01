@@ -8,12 +8,12 @@ export interface IUsers {
   lastNAme: string;
   gender: "M"|"F";
   DOB: Date;
-  address:Object[];
+  address:String[];
   verified:"notSend"|"pending"|"verified";
   status:"inActive"|"active"|"suspended"|"lost"|"deleted";
   accountType:"PT"|"EM"|"PA";
   lastLoginDate:Date;
-  accountSettings:Object;
+  accountSettings:String;
   languages:String[];
   maritalStatus:"married"|"single"|"divorced"|"widow";
 }
@@ -22,14 +22,14 @@ export interface IEmloyees {
     uID: string;
     roleID: string;
     salary: number;
-    attachments:Object[];
+    attachments:String[];
   }
   export interface IClients {
     _id?: Types.ObjectId|String;
     uID: string;
     preferredServiceType: string[]|"online"|"home"|"office";
     diseases: string;
-    preferences:Object;
+    preferences:String;
   }export interface IService_provider {
     _id?: Types.ObjectId|String;
     uId: string;
@@ -38,7 +38,7 @@ export interface IEmloyees {
     preferredServiceType: string[]|"online"|"home"|"office";
     minSessionFee: number;
     maxSessionFee: number;
-    documents:Object;
+    documents:String;
     reviewerUIDs:string[];
     veriﬁcationStatus:"notSubmitted"|"pendingReview"|"inReview"|"veriﬁed"|"rejected";
     veriﬁcationDate:Date;
@@ -52,15 +52,15 @@ export interface IEmloyees {
     name: string;
     details: string;
     startDate: Date ;
-    duration: bigint;
+    duration: number;
     serviceType:"online"|"home"|"office";
-    location:Object;
-    attachments:Object;
+    location:String;
+    attachments:String;
     requierments:string;
-    ratings:Object[];
-    reviews:Object[];
+    ratings:String[];
+    reviews:String[];
     sessionFee:number;
-    payments:Object[];
+    payments:String[];
     status:"initiated"|"agreed"|"canceled"|"ﬁnished";
     doctorReferral:string;
   }
@@ -72,7 +72,7 @@ export interface IEmloyees {
     topic: string;
     details: string;
     sentDate: Date ;
-    attachments:Object[];
+    attachments:String[];
     receiversUIDs:string;
   }
   export interface IAlarm{
@@ -81,7 +81,7 @@ export interface IEmloyees {
     referenceType: "agreements"|"session"|"disputes"|"sevice_providers";
     referenceID:string;
     frequencyUnit: "day"|"hours";
-    frequency:bigint;
+    frequency:number;
     active: boolean;
     startDate: Date ;
     endDate:Date;
@@ -92,8 +92,8 @@ export interface IEmloyees {
     referenceID:string;
     partiesUIDs: string[];
     lastUpdate: Date ;
-    messages:Object[];
-    deliveryDetails:Object[];
+    messages:String[];
+    deliveryDetails:String[];
   }
   export interface INotifications{
     _id?: Types.ObjectId|String;
@@ -120,7 +120,7 @@ export interface IEmloyees {
     startDate:Date;
     endDate:Date;
     details:string;
-    attachments:Object[];
+    attachments:String[];
     reminder:boolean;
   }
   export interface IDispute{
@@ -130,7 +130,7 @@ export interface IEmloyees {
     secondUID:string;
     topic:string;
     details:string;
-    attachments:Object[];
+    attachments:String[];
     status:"sent"|"received"|"in-progress"|"suspended"|"rejected"|"resolved";
     resolverUID:string;
     inProgressDate:Date;

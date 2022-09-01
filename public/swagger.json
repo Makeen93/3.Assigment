@@ -5,7 +5,1712 @@
 		"parameters": {},
 		"requestBodies": {},
 		"responses": {},
-		"schemas": {},
+		"schemas": {
+			"Types.ObjectId": {
+				"type": "string"
+			},
+			"IAgreements": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"name": {
+						"type": "string"
+					},
+					"parties": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"startDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"endDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"details": {
+						"type": "string"
+					},
+					"attachments": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"reminder": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"name",
+					"parties",
+					"startDate",
+					"endDate",
+					"details",
+					"attachments",
+					"reminder"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"FlattenMaps_T_": {
+				"properties": {},
+				"type": "object"
+			},
+			"Document_any.any.any_": {
+				"$ref": "#/components/schemas/FlattenMaps_T_",
+				"description": "Generic types for Document:\n*  T - the type of _id\n*  TQueryHelpers - Object with any helpers that should be mixed into the Query type\n*  DocType - the type of the actual Document created"
+			},
+			"Required_any_": {
+				"properties": {},
+				"type": "object",
+				"description": "Make all properties in T required"
+			},
+			"Partial_IAgreements_": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"name": {
+						"type": "string"
+					},
+					"parties": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"startDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"endDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"details": {
+						"type": "string"
+					},
+					"attachments": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"reminder": {
+						"type": "boolean"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"IAlarm": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"name": {
+						"type": "string"
+					},
+					"referenceType": {
+						"type": "string",
+						"enum": [
+							"agreements",
+							"session",
+							"disputes",
+							"sevice_providers"
+						]
+					},
+					"referenceID": {
+						"type": "string"
+					},
+					"frequencyUnit": {
+						"type": "string",
+						"enum": [
+							"day",
+							"hours"
+						]
+					},
+					"frequency": {
+						"type": "number",
+						"format": "double"
+					},
+					"active": {
+						"type": "boolean"
+					},
+					"startDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"endDate": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"name",
+					"referenceType",
+					"referenceID",
+					"frequencyUnit",
+					"frequency",
+					"active",
+					"startDate",
+					"endDate"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_IAlarm_": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"name": {
+						"type": "string"
+					},
+					"referenceType": {
+						"type": "string",
+						"enum": [
+							"agreements",
+							"session",
+							"disputes",
+							"sevice_providers"
+						]
+					},
+					"referenceID": {
+						"type": "string"
+					},
+					"frequencyUnit": {
+						"type": "string",
+						"enum": [
+							"day",
+							"hours"
+						]
+					},
+					"frequency": {
+						"type": "number",
+						"format": "double"
+					},
+					"active": {
+						"type": "boolean"
+					},
+					"startDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"endDate": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"IAnnouncements": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"referenceType": {
+						"type": "string",
+						"enum": [
+							"session",
+							"advertisment"
+						]
+					},
+					"referenceID": {
+						"type": "string",
+						"nullable": true
+					},
+					"statues": {
+						"type": "string",
+						"enum": [
+							"draft",
+							"puplished"
+						]
+					},
+					"topic": {
+						"type": "string"
+					},
+					"details": {
+						"type": "string"
+					},
+					"sentDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"attachments": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"receiversUIDs": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"referenceType",
+					"referenceID",
+					"statues",
+					"topic",
+					"details",
+					"sentDate",
+					"attachments",
+					"receiversUIDs"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_IAnnouncements_": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"referenceType": {
+						"type": "string",
+						"enum": [
+							"session",
+							"advertisment"
+						]
+					},
+					"referenceID": {
+						"type": "string",
+						"nullable": true
+					},
+					"statues": {
+						"type": "string",
+						"enum": [
+							"draft",
+							"puplished"
+						]
+					},
+					"topic": {
+						"type": "string"
+					},
+					"details": {
+						"type": "string"
+					},
+					"sentDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"attachments": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"receiversUIDs": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"IClients": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"uID": {
+						"type": "string"
+					},
+					"preferredServiceType": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"type": "string",
+								"enum": [
+									"online",
+									"home",
+									"office"
+								]
+							}
+						]
+					},
+					"diseases": {
+						"type": "string"
+					},
+					"preferences": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"uID",
+					"preferredServiceType",
+					"diseases",
+					"preferences"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_IClients_": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"uID": {
+						"type": "string"
+					},
+					"preferredServiceType": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"type": "string",
+								"enum": [
+									"online",
+									"home",
+									"office"
+								]
+							}
+						]
+					},
+					"diseases": {
+						"type": "string"
+					},
+					"preferences": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"ICommunications": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"referenceType": {
+						"type": "string",
+						"enum": [
+							"session",
+							"agreements",
+							"disputes",
+							"users"
+						]
+					},
+					"referenceID": {
+						"type": "string"
+					},
+					"partiesUIDs": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"lastUpdate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"messages": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"deliveryDetails": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"referenceType",
+					"referenceID",
+					"partiesUIDs",
+					"lastUpdate",
+					"messages",
+					"deliveryDetails"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_ICommunications_": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"referenceType": {
+						"type": "string",
+						"enum": [
+							"session",
+							"agreements",
+							"disputes",
+							"users"
+						]
+					},
+					"referenceID": {
+						"type": "string"
+					},
+					"partiesUIDs": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"lastUpdate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"messages": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"deliveryDetails": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"IDispute": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"sessionID": {
+						"type": "string"
+					},
+					"ﬁrstPartyUID": {
+						"type": "string"
+					},
+					"secondUID": {
+						"type": "string"
+					},
+					"topic": {
+						"type": "string"
+					},
+					"details": {
+						"type": "string"
+					},
+					"attachments": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"status": {
+						"type": "string",
+						"enum": [
+							"sent",
+							"received",
+							"in-progress",
+							"suspended",
+							"rejected",
+							"resolved"
+						]
+					},
+					"resolverUID": {
+						"type": "string"
+					},
+					"inProgressDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"receivedDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"suspendedDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"closedDate": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"sessionID",
+					"ﬁrstPartyUID",
+					"secondUID",
+					"topic",
+					"details",
+					"attachments",
+					"status",
+					"resolverUID",
+					"inProgressDate",
+					"receivedDate",
+					"suspendedDate",
+					"closedDate"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_IDispute_": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"sessionID": {
+						"type": "string"
+					},
+					"ﬁrstPartyUID": {
+						"type": "string"
+					},
+					"secondUID": {
+						"type": "string"
+					},
+					"topic": {
+						"type": "string"
+					},
+					"details": {
+						"type": "string"
+					},
+					"attachments": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"status": {
+						"type": "string",
+						"enum": [
+							"sent",
+							"received",
+							"in-progress",
+							"suspended",
+							"rejected",
+							"resolved"
+						]
+					},
+					"resolverUID": {
+						"type": "string"
+					},
+					"inProgressDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"receivedDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"suspendedDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"closedDate": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"IEmloyees": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"uID": {
+						"type": "string"
+					},
+					"roleID": {
+						"type": "string"
+					},
+					"salary": {
+						"type": "number",
+						"format": "double"
+					},
+					"attachments": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"uID",
+					"roleID",
+					"salary",
+					"attachments"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_IEmloyees_": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"uID": {
+						"type": "string"
+					},
+					"roleID": {
+						"type": "string"
+					},
+					"salary": {
+						"type": "number",
+						"format": "double"
+					},
+					"attachments": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"IEnum_values": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"name": {
+						"type": "string"
+					},
+					"value": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"note": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"value",
+					"note"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_IEnum_values_": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"name": {
+						"type": "string"
+					},
+					"value": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"note": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"INotifications": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"referenceType": {
+						"type": "string",
+						"enum": [
+							"session",
+							"agreements",
+							"disputes",
+							"alarm",
+							"announcements",
+							"users",
+							"communications"
+						]
+					},
+					"referenceID": {
+						"type": "string"
+					},
+					"statues": {
+						"type": "string",
+						"enum": [
+							"sent",
+							"delivered",
+							"opened"
+						]
+					},
+					"title": {
+						"type": "string"
+					},
+					"details": {
+						"type": "string"
+					},
+					"sentDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"receivedDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"openDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"receiverUID": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"referenceType",
+					"referenceID",
+					"statues",
+					"title",
+					"details",
+					"sentDate",
+					"receivedDate",
+					"openDate",
+					"receiverUID"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_INotifications_": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"referenceType": {
+						"type": "string",
+						"enum": [
+							"session",
+							"agreements",
+							"disputes",
+							"alarm",
+							"announcements",
+							"users",
+							"communications"
+						]
+					},
+					"referenceID": {
+						"type": "string"
+					},
+					"statues": {
+						"type": "string",
+						"enum": [
+							"sent",
+							"delivered",
+							"opened"
+						]
+					},
+					"title": {
+						"type": "string"
+					},
+					"details": {
+						"type": "string"
+					},
+					"sentDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"receivedDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"openDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"receiverUID": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"IRoles": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"name": {
+						"type": "string"
+					},
+					"employees": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IEmloyees"
+								},
+								"type": "array"
+							}
+						]
+					},
+					"users": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"service_providers": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"clients": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"sessions": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"communication": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"disputes": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"enum_values": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"name",
+					"users",
+					"service_providers",
+					"clients",
+					"sessions",
+					"communication",
+					"disputes",
+					"enum_values"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_IRoles_": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"name": {
+						"type": "string"
+					},
+					"employees": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IEmloyees"
+								},
+								"type": "array"
+							}
+						]
+					},
+					"users": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"service_providers": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"clients": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"sessions": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"communication": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"disputes": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"enum_values": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"IService_provider": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"uId": {
+						"type": "string"
+					},
+					"bio": {
+						"type": "string"
+					},
+					"specialities": {
+						"type": "string"
+					},
+					"preferredServiceType": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"type": "string",
+								"enum": [
+									"online",
+									"home",
+									"office"
+								]
+							}
+						]
+					},
+					"minSessionFee": {
+						"type": "number",
+						"format": "double"
+					},
+					"maxSessionFee": {
+						"type": "number",
+						"format": "double"
+					},
+					"documents": {
+						"type": "string"
+					},
+					"reviewerUIDs": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"veriﬁcationStatus": {
+						"type": "string",
+						"enum": [
+							"notSubmitted",
+							"pendingReview",
+							"inReview",
+							"veriﬁed",
+							"rejected"
+						]
+					},
+					"veriﬁcationDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"veriﬁedByUID": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"uId",
+					"bio",
+					"specialities",
+					"preferredServiceType",
+					"minSessionFee",
+					"maxSessionFee",
+					"documents",
+					"reviewerUIDs",
+					"veriﬁcationStatus",
+					"veriﬁcationDate",
+					"veriﬁedByUID"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_IService_provider_": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"uId": {
+						"type": "string"
+					},
+					"bio": {
+						"type": "string"
+					},
+					"specialities": {
+						"type": "string"
+					},
+					"preferredServiceType": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"type": "string",
+								"enum": [
+									"online",
+									"home",
+									"office"
+								]
+							}
+						]
+					},
+					"minSessionFee": {
+						"type": "number",
+						"format": "double"
+					},
+					"maxSessionFee": {
+						"type": "number",
+						"format": "double"
+					},
+					"documents": {
+						"type": "string"
+					},
+					"reviewerUIDs": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"veriﬁcationStatus": {
+						"type": "string",
+						"enum": [
+							"notSubmitted",
+							"pendingReview",
+							"inReview",
+							"veriﬁed",
+							"rejected"
+						]
+					},
+					"veriﬁcationDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"veriﬁedByUID": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"ISession": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"sessionType": {
+						"type": "string"
+					},
+					"serviceProviderID": {
+						"type": "string"
+					},
+					"clientsIDs": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"name": {
+						"type": "string"
+					},
+					"details": {
+						"type": "string"
+					},
+					"startDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"duration": {
+						"type": "number",
+						"format": "double"
+					},
+					"serviceType": {
+						"type": "string",
+						"enum": [
+							"online",
+							"home",
+							"office"
+						]
+					},
+					"location": {
+						"type": "string"
+					},
+					"attachments": {
+						"type": "string"
+					},
+					"requierments": {
+						"type": "string"
+					},
+					"ratings": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"reviews": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"sessionFee": {
+						"type": "number",
+						"format": "double"
+					},
+					"payments": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"status": {
+						"type": "string",
+						"enum": [
+							"initiated",
+							"agreed",
+							"canceled",
+							"ﬁnished"
+						]
+					},
+					"doctorReferral": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"sessionType",
+					"serviceProviderID",
+					"clientsIDs",
+					"name",
+					"details",
+					"startDate",
+					"duration",
+					"serviceType",
+					"location",
+					"attachments",
+					"requierments",
+					"ratings",
+					"reviews",
+					"sessionFee",
+					"payments",
+					"status",
+					"doctorReferral"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_ISession_": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"sessionType": {
+						"type": "string"
+					},
+					"serviceProviderID": {
+						"type": "string"
+					},
+					"clientsIDs": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"name": {
+						"type": "string"
+					},
+					"details": {
+						"type": "string"
+					},
+					"startDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"duration": {
+						"type": "number",
+						"format": "double"
+					},
+					"serviceType": {
+						"type": "string",
+						"enum": [
+							"online",
+							"home",
+							"office"
+						]
+					},
+					"location": {
+						"type": "string"
+					},
+					"attachments": {
+						"type": "string"
+					},
+					"requierments": {
+						"type": "string"
+					},
+					"ratings": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"reviews": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"sessionFee": {
+						"type": "number",
+						"format": "double"
+					},
+					"payments": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"status": {
+						"type": "string",
+						"enum": [
+							"initiated",
+							"agreed",
+							"canceled",
+							"ﬁnished"
+						]
+					},
+					"doctorReferral": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"IUsers": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"email": {
+						"type": "string"
+					},
+					"phoneNumber": {
+						"type": "string"
+					},
+					"profilePicture": {
+						"type": "string"
+					},
+					"firstName": {
+						"type": "string"
+					},
+					"lastNAme": {
+						"type": "string"
+					},
+					"gender": {
+						"type": "string",
+						"enum": [
+							"M",
+							"F"
+						]
+					},
+					"DOB": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"address": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"verified": {
+						"type": "string",
+						"enum": [
+							"notSend",
+							"pending",
+							"verified"
+						]
+					},
+					"status": {
+						"type": "string",
+						"enum": [
+							"inActive",
+							"active",
+							"suspended",
+							"lost",
+							"deleted"
+						]
+					},
+					"accountType": {
+						"type": "string",
+						"enum": [
+							"PT",
+							"EM",
+							"PA"
+						]
+					},
+					"lastLoginDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"accountSettings": {
+						"type": "string"
+					},
+					"languages": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"maritalStatus": {
+						"type": "string",
+						"enum": [
+							"married",
+							"single",
+							"divorced",
+							"widow"
+						]
+					}
+				},
+				"required": [
+					"email",
+					"phoneNumber",
+					"profilePicture",
+					"firstName",
+					"lastNAme",
+					"gender",
+					"DOB",
+					"address",
+					"verified",
+					"status",
+					"accountType",
+					"lastLoginDate",
+					"accountSettings",
+					"languages",
+					"maritalStatus"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_IUsers_": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"email": {
+						"type": "string"
+					},
+					"phoneNumber": {
+						"type": "string"
+					},
+					"profilePicture": {
+						"type": "string"
+					},
+					"firstName": {
+						"type": "string"
+					},
+					"lastNAme": {
+						"type": "string"
+					},
+					"gender": {
+						"type": "string",
+						"enum": [
+							"M",
+							"F"
+						]
+					},
+					"DOB": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"address": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"verified": {
+						"type": "string",
+						"enum": [
+							"notSend",
+							"pending",
+							"verified"
+						]
+					},
+					"status": {
+						"type": "string",
+						"enum": [
+							"inActive",
+							"active",
+							"suspended",
+							"lost",
+							"deleted"
+						]
+					},
+					"accountType": {
+						"type": "string",
+						"enum": [
+							"PT",
+							"EM",
+							"PA"
+						]
+					},
+					"lastLoginDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"accountSettings": {
+						"type": "string"
+					},
+					"languages": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"maritalStatus": {
+						"type": "string",
+						"enum": [
+							"married",
+							"single",
+							"divorced",
+							"widow"
+						]
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			}
+		},
 		"securitySchemes": {}
 	},
 	"info": {
@@ -17,7 +1722,2595 @@
 		"contact": {}
 	},
 	"openapi": "3.0.0",
-	"paths": {},
+	"paths": {
+		"/agreements": {
+			"get": {
+				"operationId": "GetAgreements",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IAgreements"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get List of All Agreements",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/agreements/{agreementId}": {
+			"get": {
+				"operationId": "GetAgreement",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IAgreements"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested agreement in not found"
+					}
+				},
+				"description": "Get a agreement details",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "agreementId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteAgreement",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Document_any.any.any_"
+										},
+										{
+											"$ref": "#/components/schemas/IAgreements"
+										},
+										{
+											"$ref": "#/components/schemas/Required_any_"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested agreement in not found"
+					}
+				},
+				"description": "Delete a agreement",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "agreementId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			}
+		},
+		"/agreements/create": {
+			"post": {
+				"operationId": "CreateAgreement",
+				"responses": {
+					"200": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IAgreements"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"name": "Agreements Name",
+											"parties": [
+												"List of Partie"
+											],
+											"startDate": "2022-09-02T21:00:00.000Z",
+											"endDate": "2022-09-02T21:00:00.000Z",
+											"details": "Agreements Details",
+											"attachments": [
+												""
+											],
+											"reminder": true
+										}
+									}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Create a agreement",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IAgreements"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/agreements/update/{agreementId}": {
+			"put": {
+				"operationId": "UpdateAgreement",
+				"responses": {
+					"200": {
+						"description": "updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IAgreements"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Update a agreement",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "agreementId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Partial_IAgreements_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/alarm": {
+			"get": {
+				"operationId": "GetAlarms",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IAlarm"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get List of All Alarm",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/alarm/{alarmId}": {
+			"get": {
+				"operationId": "GetAlarm",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IAlarm"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested alarm in not found"
+					}
+				},
+				"description": "Get a alarm details",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "alarmId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteAlarm",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Document_any.any.any_"
+										},
+										{
+											"$ref": "#/components/schemas/IAlarm"
+										},
+										{
+											"$ref": "#/components/schemas/Required_any_"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested alarm in not found"
+					}
+				},
+				"description": "Delete a alarm",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "alarmId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			}
+		},
+		"/alarm/create": {
+			"post": {
+				"operationId": "CreateAlarm",
+				"responses": {
+					"200": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IAlarm"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"name": "Alarm Name",
+											"referenceType": "agreements",
+											"referenceID": "10",
+											"frequencyUnit": "day",
+											"frequency": 25,
+											"active": true,
+											"startDate": "2022-09-02T21:00:00.000Z",
+											"endDate": "2022-09-02T21:00:00.000Z"
+										}
+									}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Create a alarm",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IAlarm"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/alarm/update/{alarmId}": {
+			"put": {
+				"operationId": "UpdateAlarm",
+				"responses": {
+					"200": {
+						"description": "updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IAlarm"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Update a alarm",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "alarmId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Partial_IAlarm_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/announcement": {
+			"get": {
+				"operationId": "GetAnnouncements",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IAnnouncements"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get List of All Announcements",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/announcement/{announcementId}": {
+			"get": {
+				"operationId": "GetAnnouncement",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IAnnouncements"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested announcement in not found"
+					}
+				},
+				"description": "Get a Announcement details",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "announcementId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteAnnouncement",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Document_any.any.any_"
+										},
+										{
+											"$ref": "#/components/schemas/IAnnouncements"
+										},
+										{
+											"$ref": "#/components/schemas/Required_any_"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested announcement in not found"
+					}
+				},
+				"description": "Delete a announcement",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "announcementId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			}
+		},
+		"/announcement/create": {
+			"post": {
+				"operationId": "CreateAnnouncement",
+				"responses": {
+					"200": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IAnnouncements"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"referenceType": "session",
+											"referenceID": "10",
+											"statues": "draft",
+											"topic": "therapeutic massage",
+											"details": "Use the best equipment",
+											"sentDate": "2022-09-02T21:00:00.000Z",
+											"attachments": [
+												""
+											],
+											"receiversUIDs": ""
+										}
+									}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Create a announcement",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IAnnouncements"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/announcement/update/{announcementId}": {
+			"put": {
+				"operationId": "UpdateAnnouncement",
+				"responses": {
+					"200": {
+						"description": "updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IAnnouncements"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Update a announcement",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "announcementId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Partial_IAnnouncements_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/client": {
+			"get": {
+				"operationId": "GetClients",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IClients"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get List of All Client",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/client/{clientId}": {
+			"get": {
+				"operationId": "GetClient",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IClients"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested client in not found"
+					}
+				},
+				"description": "Get a client details",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "clientId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteClient",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Document_any.any.any_"
+										},
+										{
+											"$ref": "#/components/schemas/IClients"
+										},
+										{
+											"$ref": "#/components/schemas/Required_any_"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested client in not found"
+					}
+				},
+				"description": "Delete a client",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "clientId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			}
+		},
+		"/client/create": {
+			"post": {
+				"operationId": "CreateClient",
+				"responses": {
+					"200": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IClients"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"uID": "1",
+											"preferredServiceType": "online",
+											"diseases": "cancer",
+											"preferences": ""
+										}
+									}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Create a client",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IClients"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/client/update/{clientId}": {
+			"put": {
+				"operationId": "UpdateClient",
+				"responses": {
+					"200": {
+						"description": "updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IClients"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Update a client",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "clientId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Partial_IClients_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/Communications": {
+			"get": {
+				"operationId": "GetCommunications",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/ICommunications"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get List of All Communications",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/Communications/{communicationId}": {
+			"get": {
+				"operationId": "GetCommunication",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/ICommunications"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested communication in not found"
+					}
+				},
+				"description": "Get a communication details",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "communicationId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteCommunication",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Document_any.any.any_"
+										},
+										{
+											"$ref": "#/components/schemas/ICommunications"
+										},
+										{
+											"$ref": "#/components/schemas/Required_any_"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested communication in not found"
+					}
+				},
+				"description": "Delete a communication",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "communicationId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			}
+		},
+		"/Communications/create": {
+			"post": {
+				"operationId": "CreateCommunication",
+				"responses": {
+					"200": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ICommunications"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"referenceType": "agreements",
+											"referenceID": "1",
+											"partiesUIDs": [
+												"",
+												""
+											],
+											"lastUpdate": "2022-09-02T21:00:00.000Z",
+											"messages": [
+												""
+											],
+											"deliveryDetails": [
+												""
+											]
+										}
+									}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Create a communication",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ICommunications"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/Communications/update/{communicationId}": {
+			"put": {
+				"operationId": "UpdateCommunication",
+				"responses": {
+					"200": {
+						"description": "updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/ICommunications"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Update a communication",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "communicationId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Partial_ICommunications_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/Dispute": {
+			"get": {
+				"operationId": "GetDisputes",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IDispute"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get List of All Dispute",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/Dispute/{disputeId}": {
+			"get": {
+				"operationId": "GetDispute",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IDispute"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested dispute in not found"
+					}
+				},
+				"description": "Get a dispute details",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "disputeId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteDispute",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Document_any.any.any_"
+										},
+										{
+											"$ref": "#/components/schemas/IDispute"
+										},
+										{
+											"$ref": "#/components/schemas/Required_any_"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested dispute in not found"
+					}
+				},
+				"description": "Delete a dispute",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "disputeId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			}
+		},
+		"/Dispute/create": {
+			"post": {
+				"operationId": "CreateDispute",
+				"responses": {
+					"200": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IDispute"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"sessionID": "1",
+											"ﬁrstPartyUID": "1",
+											"secondUID": "1",
+											"topic": "",
+											"details": "",
+											"attachments": [
+												""
+											],
+											"status": "in-progress",
+											"resolverUID": "1",
+											"inProgressDate": "2022-09-02T21:00:00.000Z",
+											"receivedDate": "2022-09-02T21:00:00.000Z",
+											"suspendedDate": "2022-09-02T21:00:00.000Z",
+											"closedDate": "2022-09-02T21:00:00.000Z"
+										}
+									}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Create a dispute",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IDispute"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/Dispute/update/{disputeId}": {
+			"put": {
+				"operationId": "UpdateDispute",
+				"responses": {
+					"200": {
+						"description": "updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IDispute"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Update a dispute",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "disputeId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Partial_IDispute_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/Emloyees": {
+			"get": {
+				"operationId": "GetEmloyees",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IEmloyees"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get List of All Emloyees",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/Emloyees/{emloyeId}": {
+			"get": {
+				"operationId": "GetEmloye",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IEmloyees"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested emloyees in not found"
+					}
+				},
+				"description": "Get a emloye details",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "emloyeId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteEmloye",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Document_any.any.any_"
+										},
+										{
+											"$ref": "#/components/schemas/IEmloyees"
+										},
+										{
+											"$ref": "#/components/schemas/Required_any_"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested emloye in not found"
+					}
+				},
+				"description": "Delete a emloye",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "emloyeId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			}
+		},
+		"/Emloyees/create": {
+			"post": {
+				"operationId": "CreateEmloye",
+				"responses": {
+					"200": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IEmloyees"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"uID": "1",
+											"roleID": "1",
+											"salary": 500,
+											"attachments": [
+												""
+											]
+										}
+									}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Create a emloye",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IEmloyees"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/Emloyees/update/{emloyeId}": {
+			"put": {
+				"operationId": "UpdateEmloye",
+				"responses": {
+					"200": {
+						"description": "updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IEmloyees"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Update a emloye",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "emloyeId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Partial_IEmloyees_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/Enum_values": {
+			"get": {
+				"operationId": "GetEnum_values",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IEnum_values"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get List of All Enum_values",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/Enum_values/{enum_valueId}": {
+			"get": {
+				"operationId": "GetEnum_value",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IEnum_values"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested enum_value in not found"
+					}
+				},
+				"description": "Get a enum_value details",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "enum_valueId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteEnum_value",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Document_any.any.any_"
+										},
+										{
+											"$ref": "#/components/schemas/IEnum_values"
+										},
+										{
+											"$ref": "#/components/schemas/Required_any_"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested enum_value in not found"
+					}
+				},
+				"description": "Delete a enum_value",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "enum_valueId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			}
+		},
+		"/Enum_values/create": {
+			"post": {
+				"operationId": "CreateEnum_value",
+				"responses": {
+					"200": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IEnum_values"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"name": "",
+											"value": [
+												"",
+												""
+											],
+											"note": ""
+										}
+									}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Create a enum_value",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IEnum_values"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/Enum_values/update/{enum_valueId}": {
+			"put": {
+				"operationId": "UpdateEnum_value",
+				"responses": {
+					"200": {
+						"description": "updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IEnum_values"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Update a enum_value",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "enum_valueId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Partial_IEnum_values_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/notiﬁcations": {
+			"get": {
+				"operationId": "GetNotiﬁcations",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/INotifications"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get List of All Notiﬁcations",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/notiﬁcations/{notiﬁcationsId}": {
+			"get": {
+				"operationId": "GetNotiﬁcation",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/INotifications"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested notiﬁcations in not found"
+					}
+				},
+				"description": "Get a notiﬁcations details",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "notiﬁcationsId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteNotiﬁcation",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Document_any.any.any_"
+										},
+										{
+											"$ref": "#/components/schemas/INotifications"
+										},
+										{
+											"$ref": "#/components/schemas/Required_any_"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested notiﬁcations in not found"
+					}
+				},
+				"description": "Delete a notiﬁcations",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "notiﬁcationsId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			}
+		},
+		"/notiﬁcations/create": {
+			"post": {
+				"operationId": "CreateNotiﬁcation",
+				"responses": {
+					"200": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/INotifications"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"referenceType": "session",
+											"referenceID": "1",
+											"statues": "sent",
+											"title": "",
+											"details": "",
+											"sentDate": "2022-09-02T21:00:00.000Z",
+											"receivedDate": "2022-09-02T21:00:00.000Z",
+											"openDate": "2022-09-02T21:00:00.000Z",
+											"receiverUID": "2022-09-02T21:00:00.000Z"
+										}
+									}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Create a notiﬁcations",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/INotifications"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/notiﬁcations/update/{notiﬁcationsId}": {
+			"put": {
+				"operationId": "UpdateNotiﬁcation",
+				"responses": {
+					"200": {
+						"description": "updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/INotifications"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Update a notiﬁcations",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "notiﬁcationsId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Partial_INotifications_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/roles": {
+			"get": {
+				"operationId": "GetRoles",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IRoles"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get List of All Roles",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/roles/{roleId}": {
+			"get": {
+				"operationId": "GetRole",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IRoles"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested role in not found"
+					}
+				},
+				"description": "Get a role details",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "roleId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteRole",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Document_any.any.any_"
+										},
+										{
+											"$ref": "#/components/schemas/IRoles"
+										},
+										{
+											"$ref": "#/components/schemas/Required_any_"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested role in not found"
+					}
+				},
+				"description": "Delete a role",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "roleId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			}
+		},
+		"/roles/create": {
+			"post": {
+				"operationId": "CreateRole",
+				"responses": {
+					"200": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IRoles"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"name": "",
+											"employees": [],
+											"users": [],
+											"service_providers": [],
+											"clients": [],
+											"sessions": [],
+											"communication": [],
+											"disputes": [],
+											"enum_values": []
+										}
+									}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Create a role",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IRoles"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/roles/update/{roleId}": {
+			"put": {
+				"operationId": "UpdateRole",
+				"responses": {
+					"200": {
+						"description": "updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IRoles"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Update a role",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "roleId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Partial_IRoles_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/service_provider": {
+			"get": {
+				"operationId": "GetService_providers",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IService_provider"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get List of All Service_provider",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/service_provider/{service_providerId}": {
+			"get": {
+				"operationId": "GetService_provider",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IService_provider"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested service_provider in not found"
+					}
+				},
+				"description": "Get a service_provider details",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "service_providerId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteService_provider",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Document_any.any.any_"
+										},
+										{
+											"$ref": "#/components/schemas/IService_provider"
+										},
+										{
+											"$ref": "#/components/schemas/Required_any_"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested service_provider in not found"
+					}
+				},
+				"description": "Delete a service_provider",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "service_providerId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			}
+		},
+		"/service_provider/create": {
+			"post": {
+				"operationId": "CreateService_provider",
+				"responses": {
+					"200": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IService_provider"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"uId": "1",
+											"bio": "",
+											"specialities": "",
+											"preferredServiceType": "home",
+											"minSessionFee": 10,
+											"maxSessionFee": 20,
+											"documents": "",
+											"reviewerUIDs": [],
+											"veriﬁcationStatus": "inReview",
+											"veriﬁcationDate": "2022-09-02T21:00:00.000Z",
+											"veriﬁedByUID": ""
+										}
+									}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Create a service_provider",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IService_provider"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/service_provider/update/{service_providerId}": {
+			"put": {
+				"operationId": "UpdateService_provider",
+				"responses": {
+					"200": {
+						"description": "updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IService_provider"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Update a service_provider",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "service_providerId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Partial_IService_provider_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/session": {
+			"get": {
+				"operationId": "GetSessions",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/ISession"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get List of All Session",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/session/{sessionId}": {
+			"get": {
+				"operationId": "GetSession",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/ISession"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested session in not found"
+					}
+				},
+				"description": "Get a session details",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "sessionId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteSession",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Document_any.any.any_"
+										},
+										{
+											"$ref": "#/components/schemas/ISession"
+										},
+										{
+											"$ref": "#/components/schemas/Required_any_"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested session in not found"
+					}
+				},
+				"description": "Delete a session",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "sessionId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			}
+		},
+		"/session/create": {
+			"post": {
+				"operationId": "CreateSession",
+				"responses": {
+					"200": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ISession"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"sessionType": "",
+											"serviceProviderID": "",
+											"clientsIDs": [],
+											"name": "",
+											"details": "",
+											"startDate": "2022-09-02T21:00:00.000Z",
+											"duration": 10,
+											"serviceType": "online",
+											"location": "",
+											"attachments": "",
+											"requierments": "",
+											"ratings": [
+												""
+											],
+											"reviews": [
+												""
+											],
+											"sessionFee": 150,
+											"payments": [
+												""
+											],
+											"status": "agreed",
+											"doctorReferral": ""
+										}
+									}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Create a session",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ISession"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/session/update/{sessionId}": {
+			"put": {
+				"operationId": "UpdateSession",
+				"responses": {
+					"200": {
+						"description": "updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/ISession"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Update a session",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "sessionId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Partial_ISession_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/user": {
+			"get": {
+				"operationId": "GetUsers",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IUsers"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get List of All User",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/user/{userId}": {
+			"get": {
+				"operationId": "GetUser",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IUsers"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested user in not found"
+					}
+				},
+				"description": "Get a user details",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteUser",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Document_any.any.any_"
+										},
+										{
+											"$ref": "#/components/schemas/IUsers"
+										},
+										{
+											"$ref": "#/components/schemas/Required_any_"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "the requested user in not found"
+					}
+				},
+				"description": "Delete a user",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "6300e18d3bbd975cf6459994"
+					}
+				]
+			}
+		},
+		"/user/create": {
+			"post": {
+				"operationId": "CreateUser",
+				"responses": {
+					"200": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IUsers"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"email": "",
+											"phoneNumber": "",
+											"profilePicture": "",
+											"firstName": "",
+											"lastNAme": "",
+											"gender": "F",
+											"DOB": "2022-09-02T21:00:00.000Z",
+											"address": [
+												""
+											],
+											"verified": "notSend",
+											"status": "active",
+											"accountType": "PA",
+											"lastLoginDate": "2022-09-02T21:00:00.000Z",
+											"accountSettings": "",
+											"languages": [
+												""
+											],
+											"maritalStatus": "married"
+										}
+									}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Create a user",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IUsers"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/user/update/{userId}": {
+			"put": {
+				"operationId": "UpdateUser",
+				"responses": {
+					"200": {
+						"description": "updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IUsers"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Update a user",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Partial_IUsers_"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
 	"servers": [
 		{
 			"url": "/"

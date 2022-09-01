@@ -5,8 +5,8 @@ const CommunicationsSchema = new Schema<ICommunications>({
     referenceID: { type: String, required: true },
     partiesUIDs: [{ type: String, required: true }],
     lastUpdate: { type: Date, required: true },
-    messages: [{ type: Object, required: true }],
-    deliveryDetails: [{ type: Object, required: true }],
+    messages: [{ type: String, required: true }],
+    deliveryDetails: [{ type: String, required: true }],
 });
 
 

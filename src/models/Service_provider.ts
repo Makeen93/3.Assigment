@@ -7,7 +7,7 @@ const Service_providerSchema = new Schema<IService_provider>({
     preferredServiceType : { type: String, required: true },
     minSessionFee : { type: Number, required: true },
     maxSessionFee : { type: Number, required: true },
-    documents : { type: Object, required: true },
+    documents : { type: String, required: true },
     reviewerUIDs : [{ type: String, required: true }],
     veriﬁcationStatus : { type: String, required: true },
     veriﬁcationDate : { type: Date, required: true },

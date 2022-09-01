@@ -58,7 +58,7 @@ export default class DisputeController {
     secondUID:"1",
     topic:"",
     details:"",
-    attachments:[],
+    attachments:[""],
     status:'in-progress',
     resolverUID:"1",
     inProgressDate:new Date(2022,9,3),

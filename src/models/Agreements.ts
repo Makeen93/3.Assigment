@@ -6,7 +6,7 @@ const AgreementsSchema = new Schema<IAgreements>({
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
     details: { type: String, required: true },
-    attachments: [{ type: String, required: true }],
+    attachments: [{ type: Object, required: true }],
     reminder: { type: Boolean , required: true },
 });
 

@@ -56,7 +56,7 @@ export default class ClientController {
     uID:"1",
     preferredServiceType:'online',
     diseases:"cancer",
-    preferences:"",
+    preferences:{preferences:"test"},
   })
   @Post("create")
   public async createClient(@Body() client: IClients): Promise<IClients> {

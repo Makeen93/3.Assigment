@@ -43,7 +43,23 @@
 					},
 					"attachments": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"url": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"type",
+								"url",
+								"name"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					},
@@ -110,7 +126,23 @@
 					},
 					"attachments": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"url": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"type",
+								"url",
+								"name"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					},
@@ -279,7 +311,23 @@
 					},
 					"attachments": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"url": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"type",
+								"url",
+								"name"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					},
@@ -342,7 +390,23 @@
 					},
 					"attachments": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"url": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"type",
+								"url",
+								"name"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					},
@@ -390,7 +454,15 @@
 						"type": "string"
 					},
 					"preferences": {
-						"type": "string"
+						"properties": {
+							"preferences": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"preferences"
+						],
+						"type": "object"
 					}
 				},
 				"required": [
@@ -439,7 +511,15 @@
 						"type": "string"
 					},
 					"preferences": {
-						"type": "string"
+						"properties": {
+							"preferences": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"preferences"
+						],
+						"type": "object"
 					}
 				},
 				"type": "object",
@@ -481,13 +561,41 @@
 					},
 					"messages": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"sendDate": {
+									"type": "string"
+								},
+								"senderUID": {
+									"type": "string"
+								},
+								"messageContent": {
+									"type": "string"
+								},
+								"messageType": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"sendDate",
+								"senderUID",
+								"messageContent",
+								"messageType"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					},
 					"deliveryDetails": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"detail": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"detail"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					}
@@ -539,13 +647,41 @@
 					},
 					"messages": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"sendDate": {
+									"type": "string"
+								},
+								"senderUID": {
+									"type": "string"
+								},
+								"messageContent": {
+									"type": "string"
+								},
+								"messageType": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"sendDate",
+								"senderUID",
+								"messageContent",
+								"messageType"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					},
 					"deliveryDetails": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"detail": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"detail"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					}
@@ -582,7 +718,23 @@
 					},
 					"attachments": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"url": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"type",
+								"url",
+								"name"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					},
@@ -663,7 +815,23 @@
 					},
 					"attachments": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"url": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"type",
+								"url",
+								"name"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					},
@@ -725,7 +893,23 @@
 					},
 					"attachments": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"url": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"type",
+								"url",
+								"name"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					}
@@ -763,7 +947,23 @@
 					},
 					"attachments": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"url": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"type",
+								"url",
+								"name"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					}
@@ -1177,7 +1377,23 @@
 						"format": "double"
 					},
 					"documents": {
-						"type": "string"
+						"properties": {
+							"type": {
+								"type": "string"
+							},
+							"url": {
+								"type": "string"
+							},
+							"name": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"type",
+							"url",
+							"name"
+						],
+						"type": "object"
 					},
 					"reviewerUIDs": {
 						"items": {
@@ -1267,7 +1483,23 @@
 						"format": "double"
 					},
 					"documents": {
-						"type": "string"
+						"properties": {
+							"type": {
+								"type": "string"
+							},
+							"url": {
+								"type": "string"
+							},
+							"name": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"type",
+							"url",
+							"name"
+						],
+						"type": "object"
 					},
 					"reviewerUIDs": {
 						"items": {
@@ -1343,23 +1575,81 @@
 						]
 					},
 					"location": {
-						"type": "string"
+						"properties": {
+							"location": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"location"
+						],
+						"type": "object"
 					},
 					"attachments": {
-						"type": "string"
+						"properties": {
+							"type": {
+								"type": "string"
+							},
+							"url": {
+								"type": "string"
+							},
+							"name": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"type",
+							"url",
+							"name"
+						],
+						"type": "object"
 					},
 					"requierments": {
 						"type": "string"
 					},
 					"ratings": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"date": {
+									"type": "string",
+									"format": "date-time"
+								},
+								"value": {
+									"type": "string"
+								},
+								"raterUID": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"date",
+								"value",
+								"raterUID"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					},
 					"reviews": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"date": {
+									"type": "string",
+									"format": "date-time"
+								},
+								"details": {
+									"type": "string"
+								},
+								"reviewerUID": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"date",
+								"details",
+								"reviewerUID"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					},
@@ -1369,7 +1659,27 @@
 					},
 					"payments": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"amount": {
+									"type": "string"
+								},
+								"payerId": {
+									"type": "string"
+								},
+								"paymentMethod": {
+									"type": "string"
+								},
+								"discount": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"amount",
+								"payerId",
+								"paymentMethod",
+								"discount"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					},
@@ -1455,23 +1765,81 @@
 						]
 					},
 					"location": {
-						"type": "string"
+						"properties": {
+							"location": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"location"
+						],
+						"type": "object"
 					},
 					"attachments": {
-						"type": "string"
+						"properties": {
+							"type": {
+								"type": "string"
+							},
+							"url": {
+								"type": "string"
+							},
+							"name": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"type",
+							"url",
+							"name"
+						],
+						"type": "object"
 					},
 					"requierments": {
 						"type": "string"
 					},
 					"ratings": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"date": {
+									"type": "string",
+									"format": "date-time"
+								},
+								"value": {
+									"type": "string"
+								},
+								"raterUID": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"date",
+								"value",
+								"raterUID"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					},
 					"reviews": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"date": {
+									"type": "string",
+									"format": "date-time"
+								},
+								"details": {
+									"type": "string"
+								},
+								"reviewerUID": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"date",
+								"details",
+								"reviewerUID"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					},
@@ -1481,7 +1849,27 @@
 					},
 					"payments": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"amount": {
+									"type": "string"
+								},
+								"payerId": {
+									"type": "string"
+								},
+								"paymentMethod": {
+									"type": "string"
+								},
+								"discount": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"amount",
+								"payerId",
+								"paymentMethod",
+								"discount"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					},
@@ -1541,7 +1929,23 @@
 					},
 					"address": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"maniplocity": {
+									"type": "string"
+								},
+								"governrate": {
+									"type": "string"
+								},
+								"country": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"maniplocity",
+								"governrate",
+								"country"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					},
@@ -1576,7 +1980,15 @@
 						"format": "date-time"
 					},
 					"accountSettings": {
-						"type": "string"
+						"properties": {
+							"setting": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"setting"
+						],
+						"type": "object"
 					},
 					"languages": {
 						"items": {
@@ -1654,7 +2066,23 @@
 					},
 					"address": {
 						"items": {
-							"type": "string"
+							"properties": {
+								"maniplocity": {
+									"type": "string"
+								},
+								"governrate": {
+									"type": "string"
+								},
+								"country": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"maniplocity",
+								"governrate",
+								"country"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					},
@@ -1689,7 +2117,15 @@
 						"format": "date-time"
 					},
 					"accountSettings": {
-						"type": "string"
+						"properties": {
+							"setting": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"setting"
+						],
+						"type": "object"
 					},
 					"languages": {
 						"items": {
@@ -1847,7 +2283,11 @@
 											"endDate": "2022-09-02T21:00:00.000Z",
 											"details": "Agreements Details",
 											"attachments": [
-												""
+												{
+													"name": "mohamed",
+													"url": "./page",
+													"type": "person"
+												}
 											],
 											"reminder": true
 										}
@@ -2241,7 +2681,11 @@
 											"details": "Use the best equipment",
 											"sentDate": "2022-09-02T21:00:00.000Z",
 											"attachments": [
-												""
+												{
+													"name": "mohamed",
+													"url": "./page",
+													"type": "person"
+												}
 											],
 											"receiversUIDs": ""
 										}
@@ -2435,7 +2879,9 @@
 											"uID": "1",
 											"preferredServiceType": "online",
 											"diseases": "cancer",
-											"preferences": ""
+											"preferences": {
+												"preferences": "test"
+											}
 										}
 									}
 								}
@@ -2627,15 +3073,22 @@
 											"referenceType": "agreements",
 											"referenceID": "1",
 											"partiesUIDs": [
-												"",
-												""
+												"text",
+												"text"
 											],
 											"lastUpdate": "2022-09-02T21:00:00.000Z",
 											"messages": [
-												""
+												{
+													"messageType": "text",
+													"messageContent": "text",
+													"senderUID": "text",
+													"sendDate": "text"
+												}
 											],
 											"deliveryDetails": [
-												""
+												{
+													"detail": "text"
+												}
 											]
 										}
 									}
@@ -2831,7 +3284,11 @@
 											"topic": "",
 											"details": "",
 											"attachments": [
-												""
+												{
+													"name": "mohamed",
+													"url": "./page",
+													"type": "person"
+												}
 											],
 											"status": "in-progress",
 											"resolverUID": "1",
@@ -3031,7 +3488,11 @@
 											"roleID": "1",
 											"salary": 500,
 											"attachments": [
-												""
+												{
+													"name": "mohamed",
+													"url": "./page",
+													"type": "person"
+												}
 											]
 										}
 									}
@@ -3815,7 +4276,11 @@
 											"preferredServiceType": "home",
 											"minSessionFee": 10,
 											"maxSessionFee": 20,
-											"documents": "",
+											"documents": {
+												"name": "cancer",
+												"url": "./page",
+												"type": "pdf"
+											},
 											"reviewerUIDs": [],
 											"veriﬁcationStatus": "inReview",
 											"veriﬁcationDate": "2022-09-02T21:00:00.000Z",
@@ -4016,18 +4481,37 @@
 											"startDate": "2022-09-02T21:00:00.000Z",
 											"duration": 10,
 											"serviceType": "online",
-											"location": "",
-											"attachments": "",
+											"location": {
+												"location": "test"
+											},
+											"attachments": {
+												"name": "mohamed",
+												"url": "./page",
+												"type": "person"
+											},
 											"requierments": "",
 											"ratings": [
-												""
+												{
+													"raterUID": "test",
+													"value": "test",
+													"date": "2022-09-02T21:00:00.000Z"
+												}
 											],
 											"reviews": [
-												""
+												{
+													"reviewerUID": "test",
+													"details": "test",
+													"date": "2022-09-02T21:00:00.000Z"
+												}
 											],
 											"sessionFee": 150,
 											"payments": [
-												""
+												{
+													"discount": "test",
+													"paymentMethod": "test",
+													"payerId": "test",
+													"amount": "test"
+												}
 											],
 											"status": "agreed",
 											"doctorReferral": ""
@@ -4227,13 +4711,19 @@
 											"gender": "F",
 											"DOB": "2022-09-02T21:00:00.000Z",
 											"address": [
-												""
+												{
+													"country": "turkye",
+													"governrate": "turkye",
+													"maniplocity": "turkye"
+												}
 											],
 											"verified": "notSend",
 											"status": "active",
 											"accountType": "PA",
 											"lastLoginDate": "2022-09-02T21:00:00.000Z",
-											"accountSettings": "",
+											"accountSettings": {
+												"setting": "setting"
+											},
 											"languages": [
 												""
 											],

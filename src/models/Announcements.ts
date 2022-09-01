@@ -7,7 +7,7 @@ const AnnouncementsSchema = new Schema<IAnnouncements>({
     topic: { type: String, required: true },
     details: { type: String, required: true },
     sentDate: { type: Date, required: true },
-    attachments: [{ type: String, required: true }],
+    attachments: [{ type: Object, required: true }],
     receiversUIDs: { type: String, required: true },
 });
 

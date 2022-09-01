@@ -6,7 +6,7 @@ const DisputeSchema = new Schema<IDispute>({
     secondUID: { type: String, required: true },
     topic: { type: String, required: true },
     details: { type: String, required: true },
-    attachments: [{ type: String, required: true }],
+    attachments: [{ type: Object, required: true }],
     status: { type: String, required: true },
     resolverUID: { type: String, required: true },
     inProgressDate: { type: Date, required: true },

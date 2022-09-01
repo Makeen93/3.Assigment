@@ -1,0 +1,21 @@
+POST  http://localhost:8080/Users/create HTTP/1.1
+
+content-type: application/json
+
+{
+    "email":"xcxc@gmail.com",
+    "phoneNumber":"xcxc",
+    "profilePicture":"xcxc",
+    "firstName":"aa",
+    "lastNAme":"kk",
+    "gender":"F",
+    "DOB":"new Date(1989,9,3)",
+    "address":["m,,n"],
+    "verified":"notSend",
+    "status":"active",
+    "accountType":"PA",
+    "lastLoginDate":"new Date(2022,9,3)",
+    "accountSettings":"",
+    "languages":["jk"],
+    "maritalStatus":"married",
+  }

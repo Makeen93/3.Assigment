@@ -43,7 +43,7 @@ app.use(morgan("tiny"));
 app.use(express.static("public"));
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
+  res.send('Express + TypeScript Server Ahmad yes');
 });
 //const Agreements_routes = require("./routes/AgreementsRoute");
 // const Alarm_routes = require("./routes/AlarmRoute");

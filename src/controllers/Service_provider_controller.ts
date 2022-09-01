@@ -59,7 +59,7 @@ export default class Service_providerController {
     preferredServiceType:"home",
     minSessionFee:10,
     maxSessionFee:20,
-    documents:"",
+    documents:{name:"cancer",url:"./page",type:"pdf"},
     reviewerUIDs:[],
     veriﬁcationStatus:"inReview",
     veriﬁcationDate:new Date(2022,9,3),

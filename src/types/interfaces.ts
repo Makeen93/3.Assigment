@@ -8,12 +8,12 @@ export interface IUsers {
   lastNAme: string;
   gender: "M"|"F";
   DOB: Date;
-  address:String[];
+  address:{country:string, governrate:string, maniplocity:string}[];
   verified:"notSend"|"pending"|"verified";
   status:"inActive"|"active"|"suspended"|"lost"|"deleted";
   accountType:"PT"|"EM"|"PA";
   lastLoginDate:Date;
-  accountSettings:String;
+  accountSettings:{setting:string};
   languages:String[];
   maritalStatus:"married"|"single"|"divorced"|"widow";
 }
@@ -22,15 +22,16 @@ export interface IEmloyees {
     uID: string;
     roleID: string;
     salary: number;
-    attachments:String[];
+    attachments:{name:String,url:String,type:String}[];
   }
   export interface IClients {
     _id?: Types.ObjectId|String;
     uID: string;
     preferredServiceType: string[]|"online"|"home"|"office";
     diseases: string;
-    preferences:String;
-  }export interface IService_provider {
+    preferences:{preferences:string};
+  }
+  export interface IService_provider {
     _id?: Types.ObjectId|String;
     uId: string;
     bio: string;
@@ -38,7 +39,7 @@ export interface IEmloyees {
     preferredServiceType: string[]|"online"|"home"|"office";
     minSessionFee: number;
     maxSessionFee: number;
-    documents:String;
+    documents:{name:string,url:string,type:string};
     reviewerUIDs:string[];
     veriﬁcationStatus:"notSubmitted"|"pendingReview"|"inReview"|"veriﬁed"|"rejected";
     veriﬁcationDate:Date;
@@ -54,13 +55,13 @@ export interface IEmloyees {
     startDate: Date ;
     duration: number;
     serviceType:"online"|"home"|"office";
-    location:String;
-    attachments:String;
+    location:{location:String};
+    attachments:{name:String,url:String,type:String};
     requierments:string;
-    ratings:String[];
-    reviews:String[];
+    ratings:{raterUID:String, value:String, date:Date}[];
+    reviews:{ reviewerUID:String, details:String, date:Date}[];
     sessionFee:number;
-    payments:String[];
+    payments:{discount:String ,paymentMethod:String, payerId:String, amount:String}[];
     status:"initiated"|"agreed"|"canceled"|"ﬁnished";
     doctorReferral:string;
   }
@@ -72,7 +73,7 @@ export interface IEmloyees {
     topic: string;
     details: string;
     sentDate: Date ;
-    attachments:String[];
+    attachments:{name:string,url:string,type:string}[];
     receiversUIDs:string;
   }
   export interface IAlarm{
@@ -92,8 +93,8 @@ export interface IEmloyees {
     referenceID:string;
     partiesUIDs: string[];
     lastUpdate: Date ;
-    messages:String[];
-    deliveryDetails:String[];
+    messages:{messageType:string, messageContent:string, senderUID:string, sendDate:string}[];
+    deliveryDetails:{detail:string}[];
   }
   export interface INotifications{
     _id?: Types.ObjectId|String;
@@ -120,7 +121,7 @@ export interface IEmloyees {
     startDate:Date;
     endDate:Date;
     details:string;
-    attachments:String[];
+    attachments:{name:String,url:String,type:String}[];
     reminder:boolean;
   }
   export interface IDispute{
@@ -130,7 +131,7 @@ export interface IEmloyees {
     secondUID:string;
     topic:string;
     details:string;
-    attachments:String[];
+    attachments:{name:string,url:string,type:string}[];
     status:"sent"|"received"|"in-progress"|"suspended"|"rejected"|"resolved";
     resolverUID:string;
     inProgressDate:Date;

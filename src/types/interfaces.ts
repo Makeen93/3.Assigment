@@ -26,7 +26,7 @@ export interface IEmloyees {
   }
   export interface IClients {
     _id?: Types.ObjectId|String;
-    uID: string;
+    uID: Types.ObjectId | string |IUsers;
     preferredServiceType: string[]|"online"|"home"|"office";
     diseases: string;
     preferences:{preferences:string};

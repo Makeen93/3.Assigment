@@ -56,7 +56,7 @@ export default class EmloyeesController {
     uID:"1",
     roleID:"1",
     salary:500,
-    attachments:[{name:"mohamed",url:"./page",type:"person"}],
+    attachments:[{name:"cancer",url:"./cancer",type:"pdf"}],
   })
   @Post("create")
   public async createEmloye(@Body() emloye: IEmloyees): Promise<IEmloyees> {

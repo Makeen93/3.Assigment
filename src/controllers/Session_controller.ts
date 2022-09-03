@@ -53,23 +53,23 @@ export default class SessionController {
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<ISession>({
-    sessionType:"",
-    serviceProviderID:"",
-    clientsIDs:[],
-    name:"",
-    details:"",
+    sessionType:"test",
+    serviceProviderID:"test",
+    clientsIDs:["test"],
+    name:"test",
+    details:"test",
     startDate:new Date(2022,9,3),
     duration:10,
     serviceType:"online",
     location:{location:"test"},
-    attachments:{name:"mohamed",url:"./page",type:"person"},
-    requierments:"",
+    attachments:{name:"cancer",url:"./cancer",type:"pdf"},
+    requierments:"test",
     ratings:[{raterUID:"test", value:"test", date:new Date(2022,9,3)}],
     reviews:[{ reviewerUID:"test", details:"test", date:new Date(2022,9,3)}],
     sessionFee:150,
     payments:[{discount:"test" ,paymentMethod:"test", payerId:"test", amount:"test"}],
     status:"agreed",
-    doctorReferral:"",
+    doctorReferral:"test",
   })
   @Post("create")
   public async createSession(@Body() session: ISession): Promise<ISession> {

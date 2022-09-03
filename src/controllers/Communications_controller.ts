@@ -55,10 +55,10 @@ export default class CommunicationsController {
   @Example<ICommunications>({
     referenceType:'agreements',
     referenceID:"1",
-    partiesUIDs:["text","text"],
+    partiesUIDs:["test","test"],
     lastUpdate:new Date(2022,9,3),
-    messages:[{messageType:"text", messageContent:"text", senderUID:"text", sendDate:"text"}],
-    deliveryDetails:[{detail:"text"}],
+    messages:[{messageType:"test", messageContent:"text", senderUID:"1", sendDate:"2022-9-3"}],
+    deliveryDetails:[{detail:"test"}],
     
   })
   @Post("create")

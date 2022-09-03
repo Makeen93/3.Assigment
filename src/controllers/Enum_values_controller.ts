@@ -54,9 +54,9 @@ export default class Enum_valuesController {
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<IEnum_values>({
-    name:"",
-    value:["",""],
-    note:"",
+    name:"test",
+    value:["test","test"],
+    note:"test",
   })
   @Post("create")
   public async createEnum_value(@Body() enum_value: IEnum_values): Promise<IEnum_values> {

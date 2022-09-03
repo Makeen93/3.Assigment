@@ -54,20 +54,20 @@ export default class UserController {
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<IUsers>({
-    email:"",
-    phoneNumber:"",
-    profilePicture:"",
-    firstName:"",
-    lastNAme:"",
+    email:"test",
+    phoneNumber:"test",
+    profilePicture:"test",
+    firstName:"test",
+    lastNAme:"test",
     gender:"F",
     DOB:new Date(2022,9,3),
-    address:[{country:"turkye", governrate:"turkye", maniplocity:"turkye"}],
+    address:[{country:"test", governrate:"test", maniplocity:"test"}],
     verified:"notSend",
     status:"active",
     accountType:"PA",
     lastLoginDate:new Date(2022,9,3),
     accountSettings:{setting:"setting"},
-    languages:[""],
+    languages:["test"],
     maritalStatus:"married",
   })
   @Post("create")

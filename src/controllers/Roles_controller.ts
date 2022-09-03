@@ -54,14 +54,14 @@ export default class RolesController {
   @SuccessResponse("200", "Created")
   @Example<IRoles>({
     name:"",
-    employees:[],
-    users:[],
-    service_providers:[],
-    clients:[],
-    sessions:[],
-    communication:[],
-    disputes:[],
-    enum_values:[],
+    employees:["test","test"],
+    users:["test","test"],
+    service_providers:["test","test"],
+    clients:["test","test"],
+    sessions:["test","test"],
+    communication:["test","test"],
+    disputes:["test","test"],
+    enum_values:["test","test"],
   })
   @Post("create")
   public async createRole(@Body() role: IRoles): Promise<IRoles> {

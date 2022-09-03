@@ -54,16 +54,16 @@ export default class Service_providerController {
   @SuccessResponse("200", "Created")
   @Example<IService_provider>({
     uId:"1",
-    bio:"",
-    specialities:"",
+    bio:"test",
+    specialities:"test",
     preferredServiceType:"home",
     minSessionFee:10,
     maxSessionFee:20,
     documents:{name:"cancer",url:"./page",type:"pdf"},
-    reviewerUIDs:[],
+    reviewerUIDs:["1"],
     veriﬁcationStatus:"inReview",
     veriﬁcationDate:new Date(2022,9,3),
-    veriﬁedByUID:"",
+    veriﬁedByUID:"test",
   })
   @Post("create")
   public async createService_provider(@Body() service_provider: IService_provider): Promise<IService_provider> {

@@ -53,7 +53,7 @@ export default class AlarmController {
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<IAlarm>({
-    name: "Alarm Name",
+    name: "new alarm",
     referenceType: 'agreements',
     referenceID: "10",
     frequencyUnit: 'day',

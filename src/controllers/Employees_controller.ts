@@ -10,29 +10,29 @@ import {
   Path,
   Put,
 } from "tsoa";
-import { IEmloyees } from "../types/interfaces";
+import { IEmployees } from "../types/interfaces";
 import { Model } from "mongoose";
 
-const EmloyeesModel: Model<IEmloyees> = require("../models/Emloyees");
+const EmployeesModel: Model<IEmployees> = require("../models/Employees");
 
-@Route("Emloyees")
-export default class EmloyeesController {
+@Route("Employees")
+export default class EmployeesController {
   /**
-   * Get List of All Emloyees
+   * Get List of All Employees
    */
   @Get("/")
-  public async getEmloyees(): Promise<IEmloyees[]> {
-    return await EmloyeesModel.find();
+  public async getEmployees(): Promise<IEmployees[]> {
+    return await EmployeesModel.find();
   }
 
   /**
    * Get a emloye details
    * @example emloyeId "6300e18d3bbd975cf6459994"
    */
-  @Response(404, "the requested emloyees in not found")
+  @Response(404, "the requested employees in not found")
   @Get("{emloyeId}")
-  public async getEmloye(emloyeId: string): Promise<IEmloyees | null> {
-    return await EmloyeesModel.findById(emloyeId);
+  public async getEmloye(emloyeId: string): Promise<IEmployees | null> {
+    return await EmployeesModel.findById(emloyeId);
   }
 
 
@@ -44,7 +44,7 @@ export default class EmloyeesController {
   @SuccessResponse("200", "Deleted")
   @Delete("{emloyeId}")
   public async deleteEmloye(emloyeId: string) {
-    return await EmloyeesModel.findByIdAndDelete(emloyeId);
+    return await EmployeesModel.findByIdAndDelete(emloyeId);
   }
 
   /**
@@ -52,15 +52,15 @@ export default class EmloyeesController {
    */
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
-  @Example<IEmloyees>({
+  @Example<IEmployees>({
     uID:"1",
     roleID:"1",
     salary:500,
     attachments:[{name:"cancer",url:"./cancer",type:"pdf"}],
   })
   @Post("create")
-  public async createEmloye(@Body() emloye: IEmloyees): Promise<IEmloyees> {
-    return new EmloyeesModel({
+  public async createEmloyee(@Body() emloye: IEmployees): Promise<IEmployees> {
+    return new EmployeesModel({
       ...emloye,
     }).save();
   }
@@ -73,9 +73,9 @@ export default class EmloyeesController {
   @Put("update/{emloyeId}")
   public async updateEmloye(
     @Path() emloyeId: string,
-    @Body() emloye: Partial<IEmloyees>
-  ): Promise<IEmloyees | null> {
-    let emloyeDocument = await EmloyeesModel.findById(emloyeId);
+    @Body() emloye: Partial<IEmployees>
+  ): Promise<IEmployees | null> {
+    let emloyeDocument = await EmployeesModel.findById(emloyeId);
     if (emloyeDocument != null) {
       emloyeDocument.uID = emloye.uID ?? emloyeDocument.uID;
       emloyeDocument.roleID = emloye.roleID ?? emloyeDocument.roleID;

@@ -10,7 +10,7 @@ import Announcements_routes from "./routes/AnnouncementsRoute";
 import Clients_routes from "./routes/ClientsRoute";
 import Communications_routes from "./routes/CommunicationsRoute";
 import Dispute_routes from "./routes/DisputeRoute";
-import Emloyees_routes from "./routes/EmloyeesRoute";
+import Emlpoyees_routes from "./routes/EmployeesRoute";
 import Enum_values_routes from "./routes/Enum_valuesRoute";
 import Notiﬁcations_routes from "./routes/NotificationsRoute";
 import Roles_routes from "./routes/RolesRoute";
@@ -51,7 +51,7 @@ app.get('/', (req: Request, res: Response) => {
 // const Clients_routes = require("./routes/ClientsRoute");
 // const Communications_routes = require("./routes/CommunicationsRoute");
 // const Dispute_routes = require("./routes/DisputeRoute");
-// const Emloyees_routes = require("./routes/EmloyeesRoute");
+// const Employees_routes = require("./routes/EmployeesRoute");
 // const Enum_values_routes = require("./routes/Enum_valuesRoute");
 // const Notiﬁcations_routes = require("./routes/NotificationsRoute");
 // const Roles_routes = require("./routes/RolesRoute");
@@ -64,7 +64,7 @@ app.get('/', (req: Request, res: Response) => {
   app.use("/Clients", Clients_routes);
   app.use("/Communications", Communications_routes);
   app.use("/Dispute", Dispute_routes);
-  app.use("/Emloyees", Emloyees_routes);
+  app.use("/Employees", Employees_routes);
   app.use("/Enum_values", Enum_values_routes);
   app.use("/Notifications", Notiﬁcations_routes);
   app.use("/Roles", Roles_routes);

@@ -1026,7 +1026,7 @@
 				"type": "object",
 				"description": "Make all properties in T optional"
 			},
-			"IEmloyees": {
+			"IEmployees": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -1080,7 +1080,7 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Partial_IEmloyees_": {
+			"Partial_IEmployees_": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -1347,7 +1347,7 @@
 							},
 							{
 								"items": {
-									"$ref": "#/components/schemas/IEmloyees"
+									"$ref": "#/components/schemas/IEmployees"
 								},
 								"type": "array"
 							}
@@ -1434,7 +1434,7 @@
 							},
 							{
 								"items": {
-									"$ref": "#/components/schemas/IEmloyees"
+									"$ref": "#/components/schemas/IEmployees"
 								},
 								"type": "array"
 							}
@@ -3388,9 +3388,9 @@
 				}
 			}
 		},
-		"/Emloyees": {
+		"/Employees": {
 			"get": {
-				"operationId": "GetEmloyees",
+				"operationId": "GetEmployees",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -3398,7 +3398,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/IEmloyees"
+										"$ref": "#/components/schemas/IEmployees"
 									},
 									"type": "array"
 								}
@@ -3406,12 +3406,12 @@
 						}
 					}
 				},
-				"description": "Get List of All Emloyees",
+				"description": "Get List of All Employees",
 				"security": [],
 				"parameters": []
 			}
 		},
-		"/Emloyees/{emloyeId}": {
+		"/Employees/{emloyeId}": {
 			"get": {
 				"operationId": "GetEmloye",
 				"responses": {
@@ -3422,7 +3422,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IEmloyees"
+											"$ref": "#/components/schemas/IEmployees"
 										}
 									],
 									"nullable": true
@@ -3431,7 +3431,7 @@
 						}
 					},
 					"404": {
-						"description": "the requested emloyees in not found"
+						"description": "the requested employees in not found"
 					}
 				},
 				"description": "Get a emloye details",
@@ -3461,7 +3461,7 @@
 											"$ref": "#/components/schemas/Document_any.any.any_"
 										},
 										{
-											"$ref": "#/components/schemas/IEmloyees"
+											"$ref": "#/components/schemas/IEmployees"
 										},
 										{
 											"$ref": "#/components/schemas/Required_any_"
@@ -3490,16 +3490,16 @@
 				]
 			}
 		},
-		"/Emloyees/create": {
+		"/Employees/create": {
 			"post": {
-				"operationId": "CreateEmloye",
+				"operationId": "CreateEmloyee",
 				"responses": {
 					"200": {
 						"description": "Created",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/IEmloyees"
+									"$ref": "#/components/schemas/IEmployees"
 								},
 								"examples": {
 									"Example 1": {
@@ -3532,14 +3532,14 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/IEmloyees"
+								"$ref": "#/components/schemas/IEmployees"
 							}
 						}
 					}
 				}
 			}
 		},
-		"/Emloyees/update/{emloyeId}": {
+		"/Employees/update/{emloyeId}": {
 			"put": {
 				"operationId": "UpdateEmloye",
 				"responses": {
@@ -3550,7 +3550,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IEmloyees"
+											"$ref": "#/components/schemas/IEmployees"
 										}
 									],
 									"nullable": true
@@ -3579,7 +3579,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Partial_IEmloyees_"
+								"$ref": "#/components/schemas/Partial_IEmployees_"
 							}
 						}
 					}

@@ -1,8 +1,8 @@
-POST  http://localhost:8080/Users/create HTTP/1.1
+POST  http://localhost:8000/Users/create HTTP/1.1
 
-content-type: application/json
+content-type: application/javascript
 
-{
+{  
     "email":"xcxc@gmail.com",
     "phoneNumber":"xcxc",
     "profilePicture":"xcxc",

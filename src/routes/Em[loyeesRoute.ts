@@ -1,12 +1,12 @@
 import express from "express";
-import Emloyees_controller from "../controllers/Emloyees_controller";
+import Employees_controller from "../controllers/Employees_controller";
 
 const router = express.Router();
 
 router.get("/", (_req, res) => {
-  const controller = new Emloyees_controller();
+  const controller = new Employees_controller();
   controller
-    .getEmloyees()
+    .getEmployees()
     .then((response) => {
       res.send(response);
     })
@@ -15,7 +15,7 @@ router.get("/", (_req, res) => {
     });
 });
 router.get("/:emloyeId", (req, res) => {
-  const controller = new Emloyees_controller();
+  const controller = new Employees_controller();
   controller
     .getEmloye(req.params.emloyeId)
     .then((response) => {
@@ -27,7 +27,7 @@ router.get("/:emloyeId", (req, res) => {
     });
 });
 router.delete("/:emloyeId", (req, res) => {
-  const controller = new Emloyees_controller();
+  const controller = new Employees_controller();
   controller
     .deleteEmloye(req.params.emloyeId)
     .then((_) => {
@@ -39,9 +39,9 @@ router.delete("/:emloyeId", (req, res) => {
     });
 });
 router.post("/create", (req, res) => {
-  const controller = new Emloyees_controller();
+  const controller = new Employees_controller();
   controller
-    .createEmloye(req.body)
+    .createEmloyee(req.body)
     .then((_) => {
       res.send("created");
     })
@@ -50,7 +50,7 @@ router.post("/create", (req, res) => {
     });
 });
 router.put("/update/:emloyeId", (req, res) => {
-  const controller = new Emloyees_controller();
+  const controller = new Employees_controller();
   controller
     .updateEmloye(req.params.emloyeId, req.body)
     .then((response) => {

@@ -17,7 +17,7 @@ export interface IUsers {
   languages:String[];
   maritalStatus:"married"|"single"|"divorced"|"widow";
 }
-export interface IEmloyees {
+export interface IEmployees {
     _id?: Types.ObjectId|String;
     uID: string;
     roleID: string;
@@ -142,7 +142,7 @@ export interface IEmloyees {
   export interface IRoles{
     _id?: Types.ObjectId|String;
     name:string;
-    employees?:string[]|IEmloyees[];
+    employees?:string[]|IEmployees[];
     users:string[];
     service_providers:string[];
     clients:string[];

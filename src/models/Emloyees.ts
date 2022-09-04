@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
-import { IEmloyees } from "../types/interfaces";
-const EmloyeesSchema = new Schema<IEmloyees>({
+import { IEmployees } from "../types/interfaces";
+const EmployeesSchema = new Schema<IEmployees>({
     uID: { type: String, required: true },
     roleID: { type: String, required: true },
     salary: { type: Number, required: true },
@@ -9,4 +9,4 @@ const EmloyeesSchema = new Schema<IEmloyees>({
 
 
 //Export model
-module.exports = model<IEmloyees>("Emloyees", EmloyeesSchema);
+module.exports = model<IEmployees>("Employees", EmployeesSchema);

@@ -13,7 +13,15 @@ describe("AnnouncementsController", () => {
       expect(
         async () =>
           await controller.createAnnouncement({
-            
+            "_id": "hyyyyyty567567567",
+            "referenceType": "session",
+            "referenceID":null,
+            "statues": "draft",
+            "topic": "string",
+            "details": "string",
+            "sentDate": new Date(2022,2,2) ,
+            "attachments":[{name:"string",url:"string",type:"string"}],
+            "receiversUIDs":"string",
           })          
       ).not.toThrow();
       ;

@@ -13,8 +13,14 @@ describe("CommunicationsController", () => {
       expect(
         async () =>
           await controller.createCommunication({
-            
-          })          
+            "_id": "hfghfghfgh",
+            "referenceType": "session",
+            "referenceID":"string",
+            "partiesUIDs": ["fhgh"],
+            "lastUpdate":new Date(2015,4,4) ,
+            "messages":[{messageType:"string", messageContent:"string", senderUID:"string", sendDate:"string"}],
+            "deliveryDetails":[{detail:"string"}],
+             })          
       ).not.toThrow();
       ;
       ;

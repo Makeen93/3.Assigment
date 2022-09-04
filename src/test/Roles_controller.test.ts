@@ -13,7 +13,16 @@ describe("RolesController", () => {
       expect(
         async () =>
           await controller.createRole({
-            
+            "_id":"fghfh45644444",
+            "name":"string",
+            "employees":["hj"],
+            "users":["hhh"],
+            "service_providers":["hh"],
+            "clients":["hhh"],
+            "sessions":["string"],
+            "communication":["string"],
+            "disputes":["string"],
+            "enum_values":["string"],
           })          
       ).not.toThrow();
       ;

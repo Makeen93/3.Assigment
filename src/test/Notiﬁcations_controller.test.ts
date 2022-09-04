@@ -13,7 +13,16 @@ describe("RolesController", () => {
       expect(
         async () =>
           await controller.createNotiﬁcation({
-            
+            "_id": "fgdfg3543635656",
+            "referenceType": "session",
+            "referenceID":"string",
+            "statues":"sent",
+            "title": "string",
+            "details": "string",
+            "sentDate":new Date(1,1,2005),
+            "receivedDate":new Date(1,1,2005),
+            "openDate":new Date(1,1,2005),
+            "receiverUID":new Date(1,1,2005),
           })          
       ).not.toThrow();
       ;

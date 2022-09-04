@@ -417,6 +417,143 @@
 				"type": "object",
 				"description": "Make all properties in T optional"
 			},
+			"IUsers": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"email": {
+						"type": "string"
+					},
+					"phoneNumber": {
+						"type": "string"
+					},
+					"profilePicture": {
+						"type": "string"
+					},
+					"firstName": {
+						"type": "string"
+					},
+					"lastNAme": {
+						"type": "string"
+					},
+					"gender": {
+						"type": "string",
+						"enum": [
+							"M",
+							"F"
+						]
+					},
+					"DOB": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"address": {
+						"items": {
+							"properties": {
+								"maniplocity": {
+									"type": "string"
+								},
+								"governrate": {
+									"type": "string"
+								},
+								"country": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"maniplocity",
+								"governrate",
+								"country"
+							],
+							"type": "object"
+						},
+						"type": "array"
+					},
+					"verified": {
+						"type": "string",
+						"enum": [
+							"notSend",
+							"pending",
+							"verified"
+						]
+					},
+					"status": {
+						"type": "string",
+						"enum": [
+							"inActive",
+							"active",
+							"suspended",
+							"lost",
+							"deleted"
+						]
+					},
+					"accountType": {
+						"type": "string",
+						"enum": [
+							"PT",
+							"EM",
+							"PA"
+						]
+					},
+					"lastLoginDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"accountSettings": {
+						"properties": {
+							"setting": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"setting"
+						],
+						"type": "object"
+					},
+					"languages": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"maritalStatus": {
+						"type": "string",
+						"enum": [
+							"married",
+							"single",
+							"divorced",
+							"widow"
+						]
+					}
+				},
+				"required": [
+					"email",
+					"phoneNumber",
+					"profilePicture",
+					"firstName",
+					"lastNAme",
+					"gender",
+					"DOB",
+					"address",
+					"verified",
+					"status",
+					"accountType",
+					"lastLoginDate",
+					"accountSettings",
+					"languages",
+					"maritalStatus"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"IClients": {
 				"properties": {
 					"_id": {
@@ -430,7 +567,17 @@
 						]
 					},
 					"uID": {
-						"type": "string"
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
+							}
+						]
 					},
 					"preferredServiceType": {
 						"anyOf": [
@@ -487,7 +634,17 @@
 						]
 					},
 					"uID": {
-						"type": "string"
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
+							}
+						]
 					},
 					"preferredServiceType": {
 						"anyOf": [
@@ -1889,143 +2046,6 @@
 				"type": "object",
 				"description": "Make all properties in T optional"
 			},
-			"IUsers": {
-				"properties": {
-					"_id": {
-						"anyOf": [
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							},
-							{
-								"type": "string"
-							}
-						]
-					},
-					"email": {
-						"type": "string"
-					},
-					"phoneNumber": {
-						"type": "string"
-					},
-					"profilePicture": {
-						"type": "string"
-					},
-					"firstName": {
-						"type": "string"
-					},
-					"lastNAme": {
-						"type": "string"
-					},
-					"gender": {
-						"type": "string",
-						"enum": [
-							"M",
-							"F"
-						]
-					},
-					"DOB": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"address": {
-						"items": {
-							"properties": {
-								"maniplocity": {
-									"type": "string"
-								},
-								"governrate": {
-									"type": "string"
-								},
-								"country": {
-									"type": "string"
-								}
-							},
-							"required": [
-								"maniplocity",
-								"governrate",
-								"country"
-							],
-							"type": "object"
-						},
-						"type": "array"
-					},
-					"verified": {
-						"type": "string",
-						"enum": [
-							"notSend",
-							"pending",
-							"verified"
-						]
-					},
-					"status": {
-						"type": "string",
-						"enum": [
-							"inActive",
-							"active",
-							"suspended",
-							"lost",
-							"deleted"
-						]
-					},
-					"accountType": {
-						"type": "string",
-						"enum": [
-							"PT",
-							"EM",
-							"PA"
-						]
-					},
-					"lastLoginDate": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"accountSettings": {
-						"properties": {
-							"setting": {
-								"type": "string"
-							}
-						},
-						"required": [
-							"setting"
-						],
-						"type": "object"
-					},
-					"languages": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
-					},
-					"maritalStatus": {
-						"type": "string",
-						"enum": [
-							"married",
-							"single",
-							"divorced",
-							"widow"
-						]
-					}
-				},
-				"required": [
-					"email",
-					"phoneNumber",
-					"profilePicture",
-					"firstName",
-					"lastNAme",
-					"gender",
-					"DOB",
-					"address",
-					"verified",
-					"status",
-					"accountType",
-					"lastLoginDate",
-					"accountSettings",
-					"languages",
-					"maritalStatus"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
 			"Partial_IUsers_": {
 				"properties": {
 					"_id": {
@@ -2284,9 +2304,9 @@
 											"details": "Agreements Details",
 											"attachments": [
 												{
-													"name": "mohamed",
-													"url": "./page",
-													"type": "person"
+													"name": "cancer",
+													"url": "./cancer",
+													"type": "pdf"
 												}
 											],
 											"reminder": true
@@ -2478,7 +2498,7 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"name": "Alarm Name",
+											"name": "new alarm",
 											"referenceType": "agreements",
 											"referenceID": "10",
 											"frequencyUnit": "day",
@@ -2682,12 +2702,12 @@
 											"sentDate": "2022-09-02T21:00:00.000Z",
 											"attachments": [
 												{
-													"name": "mohamed",
-													"url": "./page",
-													"type": "person"
+													"name": "cancer",
+													"url": "./cancer",
+													"type": "pdf"
 												}
 											],
-											"receiversUIDs": ""
+											"receiversUIDs": "test"
 										}
 									}
 								}
@@ -3073,21 +3093,21 @@
 											"referenceType": "agreements",
 											"referenceID": "1",
 											"partiesUIDs": [
-												"text",
-												"text"
+												"test",
+												"test"
 											],
 											"lastUpdate": "2022-09-02T21:00:00.000Z",
 											"messages": [
 												{
-													"messageType": "text",
+													"messageType": "test",
 													"messageContent": "text",
-													"senderUID": "text",
-													"sendDate": "text"
+													"senderUID": "1",
+													"sendDate": "2022-9-3"
 												}
 											],
 											"deliveryDetails": [
 												{
-													"detail": "text"
+													"detail": "test"
 												}
 											]
 										}
@@ -3281,13 +3301,13 @@
 											"sessionID": "1",
 											"ﬁrstPartyUID": "1",
 											"secondUID": "1",
-											"topic": "",
-											"details": "",
+											"topic": "test",
+											"details": "test",
 											"attachments": [
 												{
-													"name": "mohamed",
-													"url": "./page",
-													"type": "person"
+													"name": "cancer",
+													"url": "./cancer",
+													"type": "pdf"
 												}
 											],
 											"status": "in-progress",
@@ -3489,9 +3509,9 @@
 											"salary": 500,
 											"attachments": [
 												{
-													"name": "mohamed",
-													"url": "./page",
-													"type": "person"
+													"name": "cancer",
+													"url": "./cancer",
+													"type": "pdf"
 												}
 											]
 										}
@@ -3682,12 +3702,12 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"name": "",
+											"name": "test",
 											"value": [
-												"",
-												""
+												"test",
+												"test"
 											],
-											"note": ""
+											"note": "test"
 										}
 									}
 								}
@@ -3879,8 +3899,8 @@
 											"referenceType": "session",
 											"referenceID": "1",
 											"statues": "sent",
-											"title": "",
-											"details": "",
+											"title": "test",
+											"details": "test",
 											"sentDate": "2022-09-02T21:00:00.000Z",
 											"receivedDate": "2022-09-02T21:00:00.000Z",
 											"openDate": "2022-09-02T21:00:00.000Z",
@@ -4074,14 +4094,38 @@
 									"Example 1": {
 										"value": {
 											"name": "",
-											"employees": [],
-											"users": [],
-											"service_providers": [],
-											"clients": [],
-											"sessions": [],
-											"communication": [],
-											"disputes": [],
-											"enum_values": []
+											"employees": [
+												"test",
+												"test"
+											],
+											"users": [
+												"test",
+												"test"
+											],
+											"service_providers": [
+												"test",
+												"test"
+											],
+											"clients": [
+												"test",
+												"test"
+											],
+											"sessions": [
+												"test",
+												"test"
+											],
+											"communication": [
+												"test",
+												"test"
+											],
+											"disputes": [
+												"test",
+												"test"
+											],
+											"enum_values": [
+												"test",
+												"test"
+											]
 										}
 									}
 								}
@@ -4271,8 +4315,8 @@
 									"Example 1": {
 										"value": {
 											"uId": "1",
-											"bio": "",
-											"specialities": "",
+											"bio": "test",
+											"specialities": "test",
 											"preferredServiceType": "home",
 											"minSessionFee": 10,
 											"maxSessionFee": 20,
@@ -4281,10 +4325,12 @@
 												"url": "./page",
 												"type": "pdf"
 											},
-											"reviewerUIDs": [],
+											"reviewerUIDs": [
+												"1"
+											],
 											"veriﬁcationStatus": "inReview",
 											"veriﬁcationDate": "2022-09-02T21:00:00.000Z",
-											"veriﬁedByUID": ""
+											"veriﬁedByUID": "test"
 										}
 									}
 								}
@@ -4473,11 +4519,13 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"sessionType": "",
-											"serviceProviderID": "",
-											"clientsIDs": [],
-											"name": "",
-											"details": "",
+											"sessionType": "test",
+											"serviceProviderID": "test",
+											"clientsIDs": [
+												"test"
+											],
+											"name": "test",
+											"details": "test",
 											"startDate": "2022-09-02T21:00:00.000Z",
 											"duration": 10,
 											"serviceType": "online",
@@ -4485,11 +4533,11 @@
 												"location": "test"
 											},
 											"attachments": {
-												"name": "mohamed",
-												"url": "./page",
-												"type": "person"
+												"name": "cancer",
+												"url": "./cancer",
+												"type": "pdf"
 											},
-											"requierments": "",
+											"requierments": "test",
 											"ratings": [
 												{
 													"raterUID": "test",
@@ -4514,7 +4562,7 @@
 												}
 											],
 											"status": "agreed",
-											"doctorReferral": ""
+											"doctorReferral": "test"
 										}
 									}
 								}
@@ -4703,18 +4751,18 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"email": "",
-											"phoneNumber": "",
-											"profilePicture": "",
-											"firstName": "",
-											"lastNAme": "",
+											"email": "test",
+											"phoneNumber": "test",
+											"profilePicture": "test",
+											"firstName": "test",
+											"lastNAme": "test",
 											"gender": "F",
 											"DOB": "2022-09-02T21:00:00.000Z",
 											"address": [
 												{
-													"country": "turkye",
-													"governrate": "turkye",
-													"maniplocity": "turkye"
+													"country": "test",
+													"governrate": "test",
+													"maniplocity": "test"
 												}
 											],
 											"verified": "notSend",
@@ -4725,7 +4773,7 @@
 												"setting": "setting"
 											},
 											"languages": [
-												""
+												"test"
 											],
 											"maritalStatus": "married"
 										}

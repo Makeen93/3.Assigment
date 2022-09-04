@@ -2,11 +2,11 @@
 import { Model, Types } from "mongoose";
 import { IUsers } from "../types/interfaces";
 import UserController from "../controllers/User_controller";
-
+const UserModel: Model<IUsers> = require("../models/User");
+  const controller = new UserController();
 describe("UserController", () => {
 
-  const UserModel: Model<IUsers> = require("../models/User");
-  const controller = new UserController();
+  
 
   describe("create", () => {
     it("user should be created correctly", async () => {
@@ -30,12 +30,24 @@ describe("UserController", () => {
             "languages":["en"],
             "maritalStatus":"married"
           })          
-      ).not.toThrow();
+      ).not.toBeNull();
       ;
       ;
       
     });
   });
-  
+  describe("/update/:userId", () => {
+    it("user should be udpated ", async () => {
+     const user={
+      "phoneNumber":"45646456",
+     };
+     expect(
+      await controller.updateUser("123456789abcd",user)
+     ).not.toThrow()
+
+     
+     
+    
+  });
  
-});
+})});

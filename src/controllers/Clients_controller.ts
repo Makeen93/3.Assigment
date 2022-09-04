@@ -17,10 +17,7 @@ const ClientsModel: Model<IClients> = require("../models/Clients");
 
 @Route("client")
 export default class ClientController {
-  /**
-   * Get List of All Client
-   */
-  @Get("/")
+    @Get("/")
   public async getClients(): Promise<IClients[]> {
     return await ClientsModel.find();
   }
@@ -34,8 +31,6 @@ export default class ClientController {
   public async getClient(clientId: string): Promise<IClients | null> {
     return await ClientsModel.findById(clientId);
   }
-
-
   /**
    * Delete a client
    * @example clientId "6300e18d3bbd975cf6459994"

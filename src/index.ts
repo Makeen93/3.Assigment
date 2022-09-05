@@ -10,7 +10,7 @@ import Announcements_routes from "./routes/AnnouncementsRoute";
 import Clients_routes from "./routes/ClientsRoute";
 import Communications_routes from "./routes/CommunicationsRoute";
 import Dispute_routes from "./routes/DisputeRoute";
-import Emlpoyees_routes from "./routes/EmployeesRoute";
+import Employees_routes from "./routes/EmployeesRoute";
 import Enum_values_routes from "./routes/Enum_valuesRoute";
 import Notiﬁcations_routes from "./routes/NotificationsRoute";
 import Roles_routes from "./routes/RolesRoute";

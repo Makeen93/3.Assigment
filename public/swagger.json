@@ -2798,7 +2798,6 @@
 						}
 					}
 				},
-				"description": "Get List of All Client",
 				"security": [],
 				"parameters": []
 			}

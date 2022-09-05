@@ -6,7 +6,7 @@ beforeAll(async () => {
   await mongoose.connect(process.env["MONGO_URI"] ?? "");
 });
 
-afterAll(async () => {
+/*afterAll(async () => {
   // put your client disconnection code here, example with mongodb:
   await mongoose.disconnect();
-});
+});*/

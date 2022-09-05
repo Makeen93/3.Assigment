@@ -13,7 +13,6 @@ describe("AgreementsController", () => {
       expect(
         async () =>
           await controller.createAgreement({
-            "_id": "ccvcb567567575675vvvbn",
             name:"string",
             parties:["fgh","hjghj"],
             startDate:new Date(2005,1,1),

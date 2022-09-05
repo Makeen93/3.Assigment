@@ -13,10 +13,9 @@ describe("EnumValuesController", () => {
       expect(
         async () =>
           await controller.createEnum_value({
-                        "_id": "fgdfg5456456456",
-                        "name":"string",
-                        "value":["hj"],
-                        "note":"string",
+                        name:"string",
+                        value:["hj"],
+                        note:"string",
           })          
       ).not.toThrow();
       ;

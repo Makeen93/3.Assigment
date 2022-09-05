@@ -14,11 +14,10 @@ describe("ClientsController", () => {
         async () =>
           await controller.createClient(
             {
-            "_id" :"fdgdfg5645645646",
-            "uID": "gvhv",
-            "preferredServiceType": ["home","office"],
-            "diseases": "string",
-            "preferences":{preferences:"string"},
+            uID: "gvhv",
+            preferredServiceType: ["home","office"],
+            diseases: "string",
+            preferences:{preferences:"string"},
             })          
       ).not.toThrow();
       ;

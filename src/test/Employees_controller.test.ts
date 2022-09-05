@@ -13,7 +13,6 @@ describe("EmployeesController", () => {
       expect(
         async () =>
           await controller.createEmloyee({
-            "_id": "sw342342trtertert",
     uID: "string",
     roleID: "string",
     salary: 550,

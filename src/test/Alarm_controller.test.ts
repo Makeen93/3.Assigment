@@ -13,18 +13,17 @@ describe("AlarmController", () => {
       expect(
         async () =>
           await controller.createAlarm({
-            "_id": "vbnvnvbnvnrty55y5y5y",
-            "name":"string",
-            "referenceType": "agreements",
-            "referenceID":"string",
-            "frequencyUnit": "day",
-            "frequency":1,
-            "active": true,
-            "startDate": new  Date(2015,5,5) ,
-           "endDate":new Date(2015,5,5),
+            
+            name:"string",
+            referenceType: "agreements",
+            referenceID:"string",
+            frequencyUnit: "day",
+            frequency:1,
+            active: true,
+            startDate: new  Date(2015,5,5) ,
+           endDate:new Date(2015,5,5),
           })          
       ).not.toThrow();
-      ;
       ;
       
     });
